@@ -1,0 +1,278 @@
+*
+{
+    margin: 0%;
+    padding: 0%;
+    scroll-behavior: smooth;
+}
+
+* { 
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.WelcomePage
+{
+    width: 100%;
+    height: 100%;
+}
+
+/* Customize menu */
+.main-nav
+{
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter: blur(10px);    
+    background-color: rgba(255, 255, 255, 0.614);
+    margin-top: 1rem;
+    margin-inline: 2rem;
+    border-radius: 6px;
+    box-shadow: 0px 4px 10px 0px rgb(0, 0, 0,0.25);
+    z-index: 7 ;
+    top: 0%;
+    display: flex;
+    position: fixed;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+
+ul.menu-left
+{
+    align-items: center;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: inline-flex;
+    z-index: 6;
+}
+
+div.menu-right
+{
+    display: flex;
+    z-index: 6;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 2rem;
+}
+
+li
+{
+    padding-right: 50px;
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.searchbox
+{
+    border-radius: 15px;
+    border:0cm;
+    height: 24px;
+    width: 16rem;
+    margin-right: 1rem;
+}
+
+input[type=search]
+{
+    outline: none;
+    padding: 12px 12px;
+    font-size: 15px;
+    
+}
+
+/* Shop */
+a.Shop
+{
+    text-decoration:none;
+    color: rgb(68, 68, 68);
+}
+
+/* Magazine */
+a.Magazine
+{
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+}
+
+/* CustomYourOwn */
+a.Custom
+{
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+}
+
+/* Logo */
+.logo
+{
+    margin-right: 70px;    
+    height: 20px;
+    width: 20px;
+    padding-left: 1px;
+ 
+}
+
+.login
+{
+    height: 40px;
+}
+
+.cart
+{
+    height: 40px;
+    margin-right: 10px;
+}
+
+.Shadow
+{
+    display:block;
+    width: 100%;
+    position: fixed ;
+    z-index: 5;
+    top:0%;
+
+}
+
+.img-title
+{
+    width: 100%;
+    display: block;
+}
+
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* กำหนดความสูงให้เท่ากับความสูงของหน้าจอ */
+    
+}
+
+/* สไตล์สำหรับเมนูแบบดรอปดาวน์ */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    left: 1px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.614);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* สไตล์สำหรับรูปภาพในเมนูแบบดรอปดาวน์ */
+.dropdown-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* สไตล์สำหรับตัวเลือกในเมนูแบบดรอปดาวน์ */
+.dropdown-content a {
+    color: black;
+    padding: 15px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0, 0, 0);
+    color: white;
+}
+
+.checkout h1,h2{
+    text-align: center;
+   justify-content: center;
+}
+
+table {
+    border: 0; 
+    width: 50%; /* Adjust the width of the table as needed */
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+td {
+    border: none;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;    ;
+
+}
+th{
+    border: none;
+    background-color: black;
+    color:white;
+    padding: 30px;
+}
+
+form {
+    background-color: #fff; /* สีพื้นหลังฟอร์ม */
+    padding: 20px;
+    border: 1px solid #000; /* เส้นขอบฟอร์ม */
+    width: 300px;
+    margin: 0 auto;
+}
+
+label, input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #000; /* สีปุ่ม */
+    color: #fff; /* สีข้อความปุ่ม */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+tr.head th {
+    font-size: 1.2em; /* เพิ่มขนาดของข้อความใน th */
+    font-weight: bold; /* ทำให้ข้อความใน th หนาขึ้น (ตัวหนา) */
+}
+
+.summary {
+    display: block;
+    padding-right: 40px;
+    text-align: right;
+    font-weight: bold;
+}
+.submit  input{
+    display: block; /* Make the image a block-level element */
+    margin: 0 auto; /* Center the image horizontally by setting left and right margins to "auto" */
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.productname{
+    padding: 30px;
+}
+
+.checkout img{
+    max-width: 100px; /* Set the maximum width for the images to make them smaller */
+    height: auto; /* Maintain the aspect ratio when resizing */
+}
+
+.myform{
+    border: 0;
+}
+
+.mysubtotal{
+    border: 1px;
+}
+

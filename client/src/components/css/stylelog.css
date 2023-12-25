@@ -1,0 +1,320 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    scroll-behavior: smooth;
+}
+
+.class {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+
+/* pc */
+@media (min-width:1025px) {
+    *{
+        font-size: 1em;
+    }
+    .Login-page {
+        background-image: url('../img/bg-blur.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+
+
+    }
+    .Loginform{
+        display:grid;
+        background-color:rgb(235, 235, 235);
+        grid-template-columns: auto;
+        gap: 10px;
+        margin: 5% 5% 5%;
+        border-radius: 10px;
+        min-height: 90vh;
+        min-width: 80vh;
+
+    }
+    .Logintext{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .myinput{
+        height: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        margin: 0% 10% 0%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
+    .myinput ion-icon{
+        margin: 0% 5%;
+    }
+    .myinput input{
+        width: 100%;
+        height: 50%;
+    }
+    .Remember{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        font-weight: bold;
+    }
+    .Remember input{
+        width: 20px; 
+        height: 20px; 
+    }
+    .btnlogin {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        background-color: black;
+        font-weight: bold;
+        color: white;
+        margin: 0% 5%;
+        height: 80%;
+        border-radius: 20px;
+    }
+
+    .btnback {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        height: 50%;
+        margin: 0% 5%;
+        border-radius: 10px;
+    }
+    .Register{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .Register a{
+        color: red;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+}
+
+/* Tablet */
+@media (min-width:481px) and (max-width:1024px) {
+    *{
+        font-size: 1.1em;
+    }
+    .Loginform{
+        display:grid;
+        background-color:rgb(235, 235, 235);
+        grid-template-columns: auto;
+        gap: 10px;
+        /* margin: 5% 5% 5%; */
+        margin: 0% 5%;
+        border-radius: 10px;
+        min-height: 100vh;
+
+    }
+    .Logintext{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .myinput{
+        height: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        margin: 0% 10% 0%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
+    .myinput ion-icon{
+        margin: 0% 5%;
+    }
+    .myinput input{
+        width: 100%;
+        height: 50%;
+    }
+    .Remember{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        font-weight: bold;
+    }
+    .Remember input{
+        width: 20px; 
+        height: 20px; 
+    }
+    .btnlogin {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        background-color: black;
+        font-weight: bold;
+        color: white;
+        margin: 0% 5%;
+        height: 80%;
+        border-radius: 20px;
+    }
+
+    .btnback {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        height: 50%;
+        margin: 0% 5%;
+        border-radius: 10px;
+    }
+    .Register{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .Register a{
+        color: red;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px)  {
+    *{
+        font-size: 1.05em;
+    }
+    .Loginform{
+        display:grid;
+        background-color:rgb(235, 235, 235);
+        grid-template-columns: auto;
+        gap: 10px;
+        border-radius: 10px;
+        min-height: 100vh;
+        margin: 0%;
+
+    }
+    .Logintext{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .myinput{
+        height: 100%;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        margin: 0% 10% 0%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+    }
+    .myinput ion-icon{
+        margin: 0% 5%;
+    }
+    .myinput input{
+        width: 100%;
+        height: 50%;
+    }
+    .Remember{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        font-weight: bold;
+    }
+    .Remember input{
+        width: 20px; 
+        height: 20px; 
+    }
+    .btnlogin {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        background-color: black;
+        font-weight: bold;
+        color: white;
+        margin: 0% 5%;
+        height: 80%;
+        border-radius: 20px;
+    }
+
+    .btnback {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        height: 50%;
+        margin: 0% 5%;
+        border-radius: 10px;
+    }
+    .Register{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .Register a{
+        color: red;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+}

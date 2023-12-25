@@ -1,0 +1,921 @@
+@media (min-width: 1085px) {
+*
+{
+    margin: 0%;
+    padding: 0%;
+    scroll-behavior: smooth;
+}
+
+* { 
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.WelcomePage
+{
+    width: 100%;
+    height: 100%;
+}
+
+/* Customize menu */
+.main-nav
+{
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter: blur(10px);    
+    background-color: rgba(255, 255, 255, 0.614);
+    margin-top: 1rem;
+    margin-inline: 2rem;
+    border-radius: 6px;
+    box-shadow: 0px 4px 10px 0px rgb(0, 0, 0,0.25);
+    z-index: 7 ;
+    top: 0%;
+    display: flex;
+    position: fixed;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+
+ul.menu-left
+{
+    align-items: center;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: inline-flex;
+    z-index: 6;
+}
+
+div.menu-right
+{
+    display: flex;
+    z-index: 6;
+    align-items: center;
+    margin-left: auto;
+    padding-right: 2rem;
+}
+
+li
+{
+    padding-right: 50px;
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.searchbox
+{
+    border-radius: 15px;
+    border:0cm;
+    height: 24px;
+    width: 16rem;
+    margin-right: 1rem;
+}
+
+input[type=search]
+{
+    outline: none;
+    padding: 12px 12px;
+    font-size: 15px;
+    
+}
+
+/* Shop */
+a.Shop
+{
+    text-decoration:none;
+    color: rgb(68, 68, 68);
+}
+
+/* Magazine */
+a.Magazine
+{
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+}
+
+/* CustomYourOwn */
+a.Custom
+{
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+}
+
+/* Logo */
+.logo
+{
+    margin-right: 70px;    
+    height: 20px;
+    width: 20px;
+    padding-left: 1px;
+ 
+}
+
+.login
+{
+    height: 40px;
+}
+
+.cart
+{
+    height: 40px;
+    margin-right: 10px;
+}
+
+.Shadow
+{
+    display:block;
+    width: 100%;
+    position: fixed ;
+    z-index: 5;
+    top:0%;
+
+}
+
+.img-title
+{
+    width: 100%;
+    display: block;
+}
+
+.empty-cart {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.login-link {
+    display: block;
+    margin-top: 10px;
+    color: #000; /* สีลิงก์ดำ */
+    text-decoration: underline;
+    
+}
+
+
+ion-icon[name="trash-sharp"] {
+    color: #ffffff; /* Red color for the trash icon */
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart-content {
+    position: relative; /* เพิ่มบรรทัดนี้ */
+    text-align: center;
+    margin-top: 120px;
+}
+
+.mycart {
+    padding: 20px 10vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.product{
+    width:50%;
+}
+.listcart{
+    width:140%;
+    background-color: white;    
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    margin-bottom: 50px;
+    flex: 1;
+}
+.numberlist{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow:hidden;
+    position:relative;
+    margin-bottom:20px;
+}
+
+.mycart .numberlist:last-child{
+    margin-bottom: 0;
+}
+
+.numberlist-img{
+    height:100px;
+    width:100px;
+    object-fit: cover;
+}
+.numberlist-text{
+    width:50%
+}
+.numberlist-name{
+    font-size:20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.numberlist-des{
+    font-size: 15px;
+    opacity:0.5;
+    line-height: 25px;
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+
+.quantity{
+    width:130px;
+    height:30px;
+    display:flex;
+    margin-right:20ox;
+}
+.quantity-btn .item-quantity{
+width:30px;
+height:30px;
+}
+    .quantity-btn{
+        border:none;
+        background-color: black;
+        color: white;
+        border-radius: 2px;
+        cursor:pointer;
+        width:20px;
+    }
+
+    .item-quantity{
+        text-align: center;
+        line-height: 30px;
+        background-color: white;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .numberlist-del-btn{
+        display: grid;
+        width:3%;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .subtotal{
+        width:20%;
+        }
+
+    .subtotal-box{
+        width:100%;
+        height:150px;
+        background-color: black;
+        color:white;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 50px;
+        margin-left: 380px;
+    }
+
+    .text{
+        text-transform: capitalize;
+        font-size:20px;
+        text-align: center;
+    }
+
+    .subtotal-btn{
+        display: block;
+        width:100%;
+        border:none;
+        outline:none;
+        cursor:pointer;
+        height:40px;
+        border-radius:5px;
+        background-color: white;
+        color:black;
+        text-align: center;
+        line-height: 40px;
+        text-transform: capitalize;
+        text-decoration: none;
+        font-weight: bold;
+        display: grid;
+    }
+
+    .subtotalprice{
+        font-size: 50px;
+        text-align: center;
+    }
+   
+    .cart-content {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+        text-align: center; /* จัดกลางตามแนวนอน (สำหรับข้อความ) */
+    }
+    
+    .cart-content ion-icon {
+        font-size: 200px;
+        display: grid; /* เพิ่มเลเยอร์ใน ion-icon */
+        place-self: center; /* จัดตรงกลางแนวตั้งและแนวนอน */
+        margin-right: 20px;
+    }    
+    .cart-content p {
+        font-size: 18px;
+        font-weight: bold;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+    }
+    
+    .cart-content .detailbeforeshop{
+        color: grey;
+    }
+    .cart-content h1 {
+        font-size: 40px; 
+        
+    }
+
+    .cart-content .shop-now {
+        text-decoration: none;
+        color: #000; /* สีลิงก์ดำ */
+        font-weight: bold; /* ตัวหนา */
+        background-color: #000; /* สีพื้นหลังดำสำหรับปุ่ม */
+        color: #fff; /* สีตัวอักษรขาวสำหรับปุ่ม */
+        border-radius: 5px; /* รอบมุมของปุ่ม */
+        padding: 20px 60px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+        
+    }
+    
+    .cart-content .shop-now:hover {
+        background-color: rgba(54, 54, 54, 0.614);
+        color: #000; /* สีตัวอักษรดำเมื่อเมาส์ชี้ที่ปุ่ม */
+    }
+
+    .quantity .update{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+   
+
+
+}
+
+
+
+
+
+
+
+
+
+
+  
+   /* Add responsive CSS for screens with a maximum width of 601px */
+/* Add responsive CSS for screens with a maximum width of 601px */
+@media (max-width: 780px) {
+
+    .top-menu
+    {
+        display: none ;
+    }
+    .menu__btn
+    {
+        /* height: 50%; */
+        top: 50px;
+        position: fixed;
+        width: 50px !important; /* Set a fixed width */
+        height: 120px ;
+
+    }
+        .main-nav{
+            display:none;
+        }
+    
+        .Recommand{
+            display: flex;
+            flex-direction: column;
+            height: 1000px;
+          
+        }
+    
+        .Rec-image{
+            display: flex;
+            padding-inline: 3rem;
+            flex: 0;
+            justify-content: center;
+            margin-bottom: 15%;
+        }
+    
+        .cyo
+        {
+            left: 0;
+        }
+    
+        .Rec-paragraph
+        {
+            padding-top: 0;
+    
+        }
+    
+        .Rec-image
+        {
+            /* width: 100%; */
+        }
+    
+        .top-menu
+        {
+            visibility: visible;
+            
+        }
+    
+        .hamburger-menu
+        {
+            position: absolute;
+            z-index: 997;
+            display:block;
+        }
+        .menu__item {
+            display: block;
+            padding: 34px 24px;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            font-size: 72px;
+            font-weight: 600;
+            text-decoration: none;
+            transition-duration: .25s;
+        }
+        .menu__box
+        {
+            padding: 230px 0px;
+        }
+    *
+{
+    margin: 0%;
+    padding: 0%;
+    scroll-behavior: smooth;
+}
+
+* { 
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+    .empty-cart {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    
+    .login-link {
+        display: block;
+        margin-top: 10px;
+        color: #000; /* สีลิงก์ดำ */
+        text-decoration: underline;
+        
+    }
+    
+    
+    ion-icon[name="trash-sharp"] {
+        color: #ffffff; /* Red color for the trash icon */
+        background-color: black;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    .cart-content {
+        position: relative; /* เพิ่มบรรทัดนี้ */
+        text-align: center;
+    }
+    .cart-content h1 {
+        font-size: 40px; /* ขนาดตัวอักษรสำหรับ <h1> */
+        margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง 10px */
+        background: none;
+        background-color: transparent;
+    }
+    .cart-content ion-icon {
+        font-size: 240px;
+        margin: 0 auto;
+    }
+    
+    p {
+        font-size: 18px; /* ขนาดตัวอักษรสำหรับ <p> */
+        font-weight: bold;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+    }
+    
+    
+        
+    .cart-content .detailbeforeshop {
+        color: #6e6e6e; /* สีเทา */
+       
+    }
+    
+    .cart-content {
+        text-align: center;
+        justify-content: center;
+        display: grid;
+        grid-template-rows: auto 1fr auto; /* สร้างสามแถว, แถวแรกและแถวสามเป็นแบบอัตโนมัติ */
+        align-items: center; /* จัดให้อยู่ตรงกลางแนวดิสเพลย์ */
+      }
+    .mycart {
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 10px;
+      
+
+      
+    }
+
+    .listcart{
+        background-color: white;    
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .numberlist {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+  
+    .numberlist-img {
+      width: 50%;
+    }
+  
+    .numberlist-text {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  
+    .numberlist-name {
+      font-size: 1.2em;
+    }
+  
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+  
+    .item-quantity {
+      width: 40px;
+    }
+  
+    .numberlist-price {
+      font-size: 1.2em;
+    }
+  
+    .subtotal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .subtotal-box {
+        text-align: center;
+        background-color: black;
+        padding: 40px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px
+      }
+
+    .subtotal-btn{
+        font-size: 20px;
+        padding: 10px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    
+    .cart-content .shop-now {
+        text-decoration: none;
+        color: #000; /* สีลิงก์ดำ */
+        font-weight: bold; /* ตัวหนา */
+        background-color: #000; /* สีพื้นหลังดำสำหรับปุ่ม */
+        color: #fff; /* สีตัวอักษรขาวสำหรับปุ่ม */
+        width: 35%;
+        border-radius: 5px; /* รอบมุมของปุ่ม */
+        padding: 20px 30px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+        margin-bottom: 10px;
+        
+    }
+    
+    .cart-content .shop-now:hover {
+        background-color: rgba(54, 54, 54, 0.614);
+        color: #000; /* สีตัวอักษรดำเมื่อเมาส์ชี้ที่ปุ่ม */
+    }
+
+    .quantity .update{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .quantity{
+        width:200px;
+        height:30px;
+        display:flex;
+    }
+  }
+
+  @media (min-width:781px) and (max-width:1084px)
+{
+    .top-menu
+    {
+        display: none;
+    }
+
+    .top-menu {
+        visibility: visible;
+    }
+
+    .main-nav{
+        display:none;
+    }
+
+    .Rec-image{
+        /* padding-inline: 3rem; */
+    
+    }
+    .Rec-paragraph
+    {
+        padding-top: 0;
+
+    }
+
+    .Rec-image
+    {
+        /* width: 100%; */
+    }
+
+    /* Hamburger */
+    .hamburger-menu
+    {
+        position: fixed;
+        z-index: 997;
+        font-size: 90%;
+    }
+
+#menu__toggle {
+    opacity: 0;
+  }
+  #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+  }
+  #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+  }
+  .menu__btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px !important;
+    height: 26px !important;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+    transition-duration: .25s;
+  }
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+  .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 600px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: #eceff180;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+  }
+  .menu__item {
+    display: block;
+    padding: 32px 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+  }
+  .menu__item:hover {
+    background-color: #CFD8DC;
+  }
+
+  * { 
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+    .empty-cart {
+        font-size: 10px;
+        font-weight: bold;
+    }
+    
+    .login-link {
+        display: block;
+        margin-top: 10px;
+        color: #000; /* สีลิงก์ดำ */
+        text-decoration: underline;
+        
+    }
+    
+    
+    ion-icon[name="trash-sharp"] {
+        color: #ffffff; /* Red color for the trash icon */
+        background-color: black;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    .cart-content {
+        position: relative; /* เพิ่มบรรทัดนี้ */
+        text-align: center;
+    }
+    .cart-content h1 {
+        font-size: 40px; /* ขนาดตัวอักษรสำหรับ <h1> */
+        margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง 10px */
+        background: none;
+        background-color: transparent;
+    }
+    .cart-content ion-icon {
+        font-size: 240px;
+        margin: 0 auto;
+    }
+    
+    p {
+        font-size: 18px; /* ขนาดตัวอักษรสำหรับ <p> */
+        font-weight: bold;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+    }
+    
+    
+        
+    .cart-content .detailbeforeshop {
+        color: #6e6e6e; /* สีเทา */
+       
+    }
+    
+    .cart-content {
+        text-align: center;
+        justify-content: center;
+        display: grid;
+        grid-template-rows: auto 1fr auto; /* สร้างสามแถว, แถวแรกและแถวสามเป็นแบบอัตโนมัติ */
+        align-items: center; /* จัดให้อยู่ตรงกลางแนวดิสเพลย์ */
+      }
+    .mycart {
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 10px;
+      
+
+      
+    }
+
+    .listcart{
+        background-color: white;    
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .numberlist {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+  
+    .numberlist-img {
+      width: 50%;
+    }
+  
+    .numberlist-text {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  
+    .numberlist-name {
+      font-size: 1.2em;
+    }
+  
+    .quantity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+    }
+  
+    .item-quantity {
+      width: 40px;
+    }
+  
+    .numberlist-price {
+      font-size: 1.2em;
+    }
+  
+    .subtotal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .subtotal-box {
+        text-align: center;
+        background-color: black;
+        padding: 40px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px
+      }
+
+    .subtotal-btn{
+        font-size: 20px;
+        padding: 10px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    
+    .cart-content .shop-now {
+        text-decoration: none;
+        color: #000; /* สีลิงก์ดำ */
+        font-weight: bold; /* ตัวหนา */
+        background-color: #000; /* สีพื้นหลังดำสำหรับปุ่ม */
+        color: #fff; /* สีตัวอักษรขาวสำหรับปุ่ม */
+        width: 35%;
+        border-radius: 5px; /* รอบมุมของปุ่ม */
+        padding: 20px 30px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto; /* จัดกลางตามแนวนอน */
+        margin-bottom: 10px;
+        
+    }
+    
+    .cart-content .shop-now:hover {
+        background-color: rgba(54, 54, 54, 0.614);
+        color: #000; /* สีตัวอักษรดำเมื่อเมาส์ชี้ที่ปุ่ม */
+    }
+
+    .quantity .update{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .quantity{
+        width:200px;
+        height:30px;
+        display:flex;
+    }
+
+}
