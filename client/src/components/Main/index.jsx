@@ -1,5 +1,5 @@
-import '../css/style.css';
-import '../css/style-dropbar.css';
+
+import Login from '../Page/login';
 export default function Main(){
     return(
         <html lang="en">
@@ -11,8 +11,8 @@ export default function Main(){
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="../../css/style.css" />
-        <link rel="stylesheet" href="../css/style-dropbar.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/style-dropbar.css" />
         <script src="../js/app.js"></script>
       </head>
       <body>
@@ -24,10 +24,11 @@ export default function Main(){
           </label>
           <ul className="menu__box">
             <li><a className="menu__item" href="index.php">Home</a></li>
-            <li><a className="menu__item" href="../php/Shop.php">Shop</a></li>
-            <li><a className="menu__item" href="../php/Magazine.php">Magazine</a></li>
-            <li><a className="menu__item" href="../php/Custom.php">Custom Your Own</a></li>
-            <li><a className="menu__item" href="../php/login.php">Login</a></li>
+            <li><a className="menu__item" href="/php/Shop.php">Shop</a></li>
+            <li><a className="menu__item" href="/php/Magazine.php">Magazine</a></li>
+            <li><a className="menu__item" href="/php/Custom.php">Custom Your Own</a></li>
+            {/* <li><a className="menu__item" href="../Page/login.jsx">Login</a></li> */}
+            <li><a className="menu__item" href="../Page/login.jsx">Login</a></li>
           </ul>
         </div>
 
@@ -44,7 +45,8 @@ export default function Main(){
             <div className="menu-right">
               <input type="search" className="searchbox" placeholder="Search Products" />
               <a href="./php/Cartbeforelogin.php"><img src="/img/cart.png" className="cart" alt="Cart" /></a>
-              <a href="./php/login.php"><img src="/img/Login.png" className="login" alt="Login" /></a>
+              {/* <a href="./php/login.php"><img src="/img/Login.png" className="login" alt="Login" /></a> */}
+              {/* <img src="/img/Login.png" className="login" alt="Login" /> */}
             </div>
           </nav>
         </div>
