@@ -1,6 +1,8 @@
+import { useNavigate ,Routes, Route} from 'react-router-dom';
+import Error from './Error';
 
-import Login from '../Page/login';
 export default function Main(){
+    let Navi = useNavigate();
     return(
         <html lang="en">
       <head>
@@ -38,7 +40,8 @@ export default function Main(){
           <nav className="main-nav">
             <ul className="menu-left">
               <a href="index.php"><img src="/img/logo.png" className="logo" alt="Logo" /></a>
-              <li><a href="./php/Shop.php" className="Shop">SHOP</a></li>
+              {/* <li><a href="./php/Shop.php" className="Shop">SHOP</a></li> */}
+              <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
               <li><a href="./php/Magazine.php" className="Magazine">MAGAZINE</a></li>
               <li><a className="Custom" href="./php/Custom.php">CUSTOM YOUR OWN</a></li>
             </ul>
@@ -50,7 +53,7 @@ export default function Main(){
             </div>
           </nav>
         </div>
-
+        
         {/* Banner */}
         <div className="Banner">
           <video src="/vdo/BannerVideo.mp4" className="VdoBanner" autoPlay muted loop playsInline data-object-fit="cover" />
@@ -78,8 +81,10 @@ export default function Main(){
             </div>
           </div>
         </div>
+        
       </body>
     </html>
+    
   )
     
 }
