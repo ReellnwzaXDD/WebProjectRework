@@ -1,8 +1,13 @@
 // server.mjs
 import express from 'express';
 import mysql from 'mysql';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 const app = express();
 const port = 3001;
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: '127.0.0.1',
@@ -23,17 +28,27 @@ db.connect((err) => {
   
 });
 
+// End point // 
+app.post('/login', (req,res)=>{
+  const {username, password } = req.body;
+  const sql = "SELECT * FROM member_account WHERE Username = ? AND Password = ? ";
+  db.query(sql,[username,password],(err,results)=>{
+    if(err){
+      console.error('Error executing SQL Qurry: ',err);
+      res.status(500).json({ success: false,message: 'Internal Server Error'})
+    }else{
+      if (results.length > 0) {
+        res.json({ success: true, message: 'Login successful' });
+        
 
-app.get('/api/data', (req, res) => {
-  db.query('SELECT * FROM your_table', (err, results) => {
-    if (err) {
-      console.error('Error executing MySQL query: ', err);
-      res.status(500).send('Internal Server Error');
-      return;
+      } else {
+        res.json({ success: false, message: 'Invalid username or password' });
+      }
     }
-    res.json(results);
-  });
-});
+  })
+})
+
+
 
 app.listen(port, () => {
   console.log(`Express server is running on http://localhost:${port}`);

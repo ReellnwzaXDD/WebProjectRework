@@ -1,5 +1,4 @@
-import { useNavigate ,Routes, Route} from 'react-router-dom';
-import Error from './Error';
+import { useNavigate } from 'react-router-dom';
 
 export default function Main(){
     let Navi = useNavigate();
@@ -42,14 +41,15 @@ export default function Main(){
               <a href="index.php"><img src="/img/logo.png" className="logo" alt="Logo" /></a>
               {/* <li><a href="./php/Shop.php" className="Shop">SHOP</a></li> */}
               <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
-              <li><a href="./php/Magazine.php" className="Magazine">MAGAZINE</a></li>
-              <li><a className="Custom" href="./php/Custom.php">CUSTOM YOUR OWN</a></li>
+              <li><button onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
+              <li><button onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
+  
             </ul>
             <div className="menu-right">
               <input type="search" className="searchbox" placeholder="Search Products" />
               <a href="./php/Cartbeforelogin.php"><img src="/img/cart.png" className="cart" alt="Cart" /></a>
               {/* <a href="./php/login.php"><img src="/img/Login.png" className="login" alt="Login" /></a> */}
-              {/* <img src="/img/Login.png" className="login" alt="Login" /> */}
+              <button onClick={()=> Navi("/login")} > <img src="/img/Login.png" className="login" alt="Login" /></button>
             </div>
           </nav>
         </div>

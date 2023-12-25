@@ -1,25 +1,22 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function Login(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    let Navi = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
-    
-        // Database connection code
-        // Include your connect.js logic here
-    
         try {
-          // Your login logic here
-          
-          const response = await fetch('./connect.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-              username,
-              password,
-            }),
-          });
+            const response = await fetch('http://localhost:3001/login', { // Use Post API 
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  username,
+                  password,
+                }),
+              });
     
           const data = await response.json();
     
@@ -27,6 +24,7 @@ export default function Login(){
             // Login successful
             // Handle storing user details in session or redirect to another page
             console.log('Login successful');
+            Navi("/shop");
           } else {
             // Login failed
             console.error('Invalid username or password. Please try again.');
@@ -40,7 +38,7 @@ export default function Login(){
       <div className="mybox">
         <form className="Loginform" onSubmit={handleLogin}>
           <div className="Logintext">
-            <img src="../img/Loginlogo.png" alt="Login Logo" />
+            <img src="/img/Loginlogo.png" alt="Login Logo" />
           </div>
           <div className="myinput">
             <ion-icon name="person"></ion-icon>
@@ -69,9 +67,8 @@ export default function Login(){
             </p>
           </div>
           <input type="submit" value="Login" className="btnlogin" />
-          <a href="../index.php" className="btnback">
-            BACK
-          </a>
+          <button onClick={()=> Navi("/")} >Home</button>
+          
           <div className="Register">
             <p>
               IF YOU DON'T HAVE AN ACCOUNT <a href="./register.php">Register</a>
