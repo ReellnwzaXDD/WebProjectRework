@@ -13,7 +13,10 @@ const ImageGallery = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        const sanitizedImagePaths = data.imagePaths.map(path => path.replace(/\.\.\//g, ''));
+        const sanitizedImagePaths = data.imagePaths.map(entry => ({
+          imagePath: entry.image_path.replace(/\.\.\//g, ''),
+          price: entry.price,
+        }));
         setImagePaths(sanitizedImagePaths);
       } catch (error) {
         console.error('Error fetching image paths:', error);
@@ -23,6 +26,7 @@ const ImageGallery = () => {
   
     fetchData();
   }, [currentPage, sortType]);
+  
   
 
   const handleNextPage = () => {
@@ -62,12 +66,12 @@ const ImageGallery = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {imagePaths.map((imagePath, index) => (
+        {imagePaths.map((result, index) => (
           <div key={index} className="product-item border border-gray-300 p-4">
-            <a href={`ShopDetail?imgpath=${imagePath}`}>
-              <img src={imagePath} alt="Image" className="w-full" />
+            <a href={`ShopDetail?imgpath=${result.imagePath}`}>
+              <img src={result.imagePath} alt="Image" className="w-full" />
             </a>
-            {/* You can add additional details here based on your API response */}
+            <p className="text-center mt-2">{result.price}฿</p>
           </div>
         ))}
       </div>

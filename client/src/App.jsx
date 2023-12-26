@@ -5,9 +5,10 @@ import Error from './components/Page/Error';
 import Login from './components/Page/login';
 import Register from './components/Page/register';
 import Shop from './components/Page/Shop';
+import Logout from './components/Page/logout';
 function App() {
   const [count, setCount] = useState(0)
-
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -17,6 +18,7 @@ function App() {
             <Route path='/custom' element={<Main />} />
             <Route path='/shop' element={<Shop />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/logout' element={<Logout />} />
             <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>

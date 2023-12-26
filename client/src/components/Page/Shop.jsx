@@ -100,33 +100,13 @@ export default function Shop(){
           </nav>
         </div>
 
-        <div className="Shop-filter flex items-center justify-between">
-        {/* Filter button */}
-        <button
-            id="filterBT"
-            className="filterBT"
-            onClick={() => setCategoryFilter(!categoryFilter)}
-        >
-            Filter
-        </button>
-
-        {/* Filter form */}
-        <form onSubmit={handleFilterSubmit} className="ml-4">
-            {/* ... */}
-        </form>
-
-        {/* Sort button and form */}
-        
+        <div className="Shop-filter flex items-center justify-between">   
         </div>
-
-
-      <div >
+        <div>
             <ImageGallery></ImageGallery>
         </div>
 
         <div className="Next-pic">
-            {/* Pagination */}
-            {/* ... */}
         </div>
 
         <div id="result"></div>

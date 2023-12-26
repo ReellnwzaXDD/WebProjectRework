@@ -1,14 +1,28 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { useState,useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
 
 export default function Login(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     let Navi = useNavigate();
+
+    useEffect(() => {
+      // Check if the user is already logged in
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+  
+      if (isLoggedIn) {
+        // Redirect to another page, e.g., the dashboard
+        Navi('/shop');
+      }
+    }, [Navi]);
+    
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+            if (!username || !password) {
+              alert('Please fill in all required fields.');
+              return;
+            }
             const response = await fetch('http://localhost:3001/login', { // Use Post API 
                 method: 'POST',
                 headers: {
@@ -24,16 +38,22 @@ export default function Login(){
     
           if (data.success) {
             // Login successful
-            // Handle storing user details in session or redirect to another page
+            // set user session 
+            sessionStorage.setItem('id',data.uid);
+            sessionStorage.setItem('username',data.username);
+            sessionStorage.setItem('isLoggedIn',true);
             console.log('Login successful');
-            Navi("/shop");
+            Navi('/shop');
           } else {
             // Login failed
+            alert('Invalid username or password. Please try again.');
             console.error('Invalid username or password. Please try again.');
+
           }
         } catch (error) {
           console.error('Error during login:', error.message);
         }
+        
       };
     return(
       <html lang="en" data-theme="emerald">

@@ -5,19 +5,20 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import swaggerUI from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
+
 const app = express();
 const port = 3001;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
-const db = mysql.createConnection({
+const dbOptions = { 
   host: '127.0.0.1',
   user: 'oclockne',
   password: 'Thongsongsom@1',
   database: 'oclockne_Webtest',
-  multipleStatements: true,
-});
+};
+const db = mysql.createConnection(dbOptions);
+
 
 
 db.connect((err) => {
@@ -53,7 +54,7 @@ db.connect((err) => {
  *        description: Internal server error
  * 
  */
-app.post('/login', (req,res)=>{
+app.post('/login' , (req,res)=>{
   const {username, password } = req.body;
   const sql = "SELECT * FROM member_account WHERE Username = ? AND Password = ? ";
   db.query(sql,[username,password],(err,results)=>{
@@ -62,15 +63,15 @@ app.post('/login', (req,res)=>{
       res.status(500).json({ success: false,message: 'Internal Server Error'})
     }else{
       if (results.length > 0) {
-        res.json({ success: true, message: 'Login successful' });
-        
-
+        const userdetail = results[0];
+        res.json({ success: true, message: 'Login successful',username: userdetail.Username,uid: userdetail.MD_Id });
       } else {
-        res.json({ success: false, message: 'Invalid username or password' });
+        return res.status(401).json({ success: false,message: 'Invalid username or password'})
       }
     }
   })
 })
+
 /**
  * @swagger
  * /register:
@@ -147,7 +148,7 @@ app.post('/register',(req,res)=>{
  *        description: Internal server error
  * 
  */
-app.get('/chkusername',(req,res)=>{
+app.get('/chkusername' ,(req,res)=>{
   const {username} = req.query;
     if (!username) {
       return res.status(400).json({ error: 'Username is empty'});
@@ -172,14 +173,14 @@ app.get('/chkusername',(req,res)=>{
  * @swagger
  * /img/normal:
  *  get:
- *    summary: qurry IMG path
-*     parameters:
+ *    summary: qurry image path
+ *    parameters:
  *     - in: path
- *       name: IMG path
+ *       name: imagepath
  *       schema:
  *          type: string
  *       required: true
- *       description: IMG path to DB
+ *       description: get imgpath in db
  *    responses:
  *      200:
  *        description: Successful response
@@ -187,19 +188,18 @@ app.get('/chkusername',(req,res)=>{
  *        description: Internal server error
  * 
  */
-
 app.get('/img/normal',(req,res)=>{
     const { page = 1, itemsPerPage = 16, sortType } = req.query;
     const offset = (page - 1) * itemsPerPage;
     const validSortTypes = ['ASC', 'DESC'];
     const sanitizedSortType = validSortTypes.includes(sortType) ? sortType : '';
-    const sql = `SELECT images.image_path FROM images JOIN products ON images.IMG_ID = products.IMG_ID ORDER BY images.image_path ${sanitizedSortType} LIMIT ?, ?`;
+    const sql = `SELECT images.image_path , products.price FROM images JOIN products ON images.IMG_ID = products.IMG_ID ORDER BY products.price ${sanitizedSortType} LIMIT ?, ?`;
     db.query(sql,[offset,itemsPerPage],(err,result)=>{
       if(err){
         console.error(err);
         return res.status(500).json({ success: false,message: 'Internal Server Error'});
       }
-      const imagePaths = result.map(result => result.image_path);
+      const imagePaths = result.map(result => ({ image_path: result.image_path, price: result.price }));
       res.json({ imagePaths });
     })
   
