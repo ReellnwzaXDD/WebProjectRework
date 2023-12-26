@@ -3,6 +3,8 @@ import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
 const app = express();
 const port = 3001;
 // Middleware
@@ -29,6 +31,28 @@ db.connect((err) => {
 });
 
 // End point // 
+/**
+ * @swagger
+ * /login:
+ *  post:
+ *    summary: qurry Member table
+ *    requestBody:
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              username:
+ *                type: string
+ *              password:
+ *                type: string
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
 app.post('/login', (req,res)=>{
   const {username, password } = req.body;
   const sql = "SELECT * FROM member_account WHERE Username = ? AND Password = ? ";
@@ -47,9 +71,180 @@ app.post('/login', (req,res)=>{
     }
   })
 })
+/**
+ * @swagger
+ * /register:
+ *  post:
+ *    summary: Insert member to DB
+ *    requestBody:
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              username:
+ *                type: string
+ *              password:
+ *                type: string
+ *              name:
+ *                type: string
+ *              surname:
+ *                type: string
+ *              email:
+ *                type: string
+ *              phone:
+ *                type: string
+ *              address:
+ *                type: string
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
+app.post('/register',(req,res)=>{
+  const {username,password,name,surname,email,phone,address} = req.body;
+
+  const sql = "INSERT INTO member_detail (Name, Surname, Email, tel, Address ) VALUES (?,?,?,?,?)";
+  db.query(sql,[name,surname,email,phone,address],(err,result)=>{
+    if(err){
+      console.error('Error executing SQL Qurry: ',err);
+      res.status(500).json({ success: false,message: 'Internal Server Error'});
+    }else{
+      // console.log('Data inserted into the first table successfully!'); //Debug
+      const GenID = result.insertId;
+      const sql2 = "INSERT INTO member_account (Username, Password, MD_id) VALUES (?,?,?)";
+      db.query(sql2,[username,password,GenID],(err)=>{
+        if(err){
+          console.error('Error inserting into the second table:', err);
+          res.status(500).json({ success: false,message: 'Internal Server Error'});
+        }else{
+          console.log('Register successfully');
+          res.json({ success: true, message: 'Register successfully' });
+        }
+      })
+
+    }
+  })
+})
+/**
+ * @swagger
+ * /chkusername:
+ *  get:
+ *    summary: qurry username chk available
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
+app.get('/chkusername',(req,res)=>{
+  const {username} = req.query;
+    if (!username) {
+      return res.status(400).json({ error: 'Username is empty'});
+    }
+
+  const sql = "SELECT Username FROM member_account WHERE username=?";
+  db.query(sql,[username],(err,result) =>{
+    if (err) {
+      return res.status(500).json({ success: false,message: 'Internal Server Error'});
+    }
+    const isusernameavailable = result.length ===0;
+    if (isusernameavailable) {
+      return res.json({ available: isusernameavailable });
+    }else{
+      
+      return res.status(500).json({ available: isusernameavailable });
+    }
+    
+  })
+})
+
+app.get('/img/normal',(req,res)=>{
+  const { page = 1, itemsPerPage = 16 } = req.query;
+  const offset = (page - 1) * itemsPerPage;
+  
+    const sql = "SELECT images.image_path FROM images JOIN products ON images.IMG_ID = products.IMG_ID LIMIT ?, ?";
+    db.query(sql,[offset,itemsPerPage],(err,result)=>{
+      if(err){
+        console.error(err);
+        return res.status(500).json({ success: false,message: 'Internal Server Error'});
+      }
+      const imagePaths = result.map(result => result.image_path);
+      res.json({ imagePaths });
+    })
+  
+})
+
+app.get('/img/sortmax',(req,res)=>{
+  const { page = 1, itemsPerPage = 16 } = req.query;
+  const offset = (page - 1) * itemsPerPage;
+  
+    const sql = "SELECT image_path FROM images JOIN products ON images.IMG_ID=products.IMG_ID ORDER BY products.price DESC LIMIT ?, ?";
+    db.query(sql,[offset,itemsPerPage],(err,result)=>{
+      if(err){
+        console.error(err);
+        return res.status(500).json({ success: false,message: 'Internal Server Error'});
+      }
+      const imagePaths = result.map(result => result.image_path);
+      res.json({ imagePaths });
+    })
+  
+    
+  
+})
+
+app.get('/img/sortmin',(req,res)=>{
+  const { page = 1, itemsPerPage = 16 } = req.query;
+  const offset = (page - 1) * itemsPerPage;
+  const sql = "SELECT image_path FROM images JOIN products ON images.IMG_ID=products.IMG_ID ORDER BY products.price ASC LIMIT ?, ?";
+  db.query(sql,[offset,itemsPerPage],(err,result)=>{
+    if(err){
+      console.error(err);
+      return res.status(500).json({ success: false,message: 'Internal Server Error'});
+    }
+    const imagePaths = result.map(result => result.image_path);
+    res.json({ imagePaths });
+  })
+
+})
+
+
+
+
+
+
+
+
+
+
+//Swagger //
+const swaggerOption ={
+  definition:{
+    openapi: '3.0.3',
+    info: {
+        title: 'API Documentation',
+        version: '1.0.0',
+        description: 'Oclock API Documentation',
+    },
+  
+  servers: [
+    {
+      url: 'http://localhost:3001',
+    },
+  ],
+  },
+  apis:['server.mjs'],
+}
+const swaggerSpec = swaggerJSDoc(swaggerOption);
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerSpec));
+
 
 
 
 app.listen(port, () => {
-  console.log(`Express server is running on http://localhost:${port}`);
+  console.log(`server is running on http://localhost:${port}`);
+  console.log(`swagger is running on http://localhost:${port}/api-docs`);
 });
