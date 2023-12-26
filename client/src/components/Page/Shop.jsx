@@ -75,8 +75,6 @@ export default function Shop(){
           <ul className="menu__box">
             <li><button className="menu__item" onClick={()=> Navi("/")} >Home</button></li>
             <li><button className="menu__item" onClick={()=> Navi("/shop")} >SHOP</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
             <li><button className="menu__item" onClick={()=> Navi("/login")} >Login</button></li>
           </ul>
         </div>
@@ -86,10 +84,9 @@ export default function Shop(){
           <img src="/img/Shadow.png" className="Shadow" title="Shadow" />
           <nav className="main-nav">
             <ul className="menu-left">
-              <a href="index.php"><img src="/img/logo.png" className="logo" alt="Logo" /></a>
+              <button onClick={()=> Navi("/")}><img src="/img/logo.png" className="logo" alt="Logo" /></button>
               <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
-              <li><button onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
-              <li><button onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
+         
   
             </ul>
             <div className="menu-right">

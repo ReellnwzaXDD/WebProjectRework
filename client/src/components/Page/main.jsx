@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Main(){
     let Navi = useNavigate();
     return(
-        <html lang="en">
+        <html lang="en" data-theme="emerald">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>O'clock</title>
@@ -26,8 +26,6 @@ export default function Main(){
           <ul className="menu__box">
             <li><button className="menu__item" onClick={()=> Navi("/")} >Home</button></li>
             <li><button className="menu__item" onClick={()=> Navi("/shop")} >SHOP</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
             <li><button className="menu__item" onClick={()=> Navi("/login")} >Login</button></li>
           </ul>
         </div>
@@ -37,11 +35,10 @@ export default function Main(){
           <img src="/img/Shadow.png" className="Shadow" title="Shadow" />
           <nav className="main-nav">
             <ul className="menu-left">
-              <a href="index.php"><img src="/img/logo.png" className="logo" alt="Logo" /></a>
-              {/* <li><a href="./php/Shop.php" className="Shop">SHOP</a></li> */}
+            <button onClick={()=> Navi("/")}><img src="/img/logo.png" className="logo" alt="Logo" /></button>
               <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
-              <li><button onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
-              <li><button onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
+             
+             
   
             </ul>
             <div className="menu-right">
@@ -64,11 +61,11 @@ export default function Main(){
             <img src="/img/Customyourown-neww.png" className="cyo" title="cyo" alt="Custom Your Own" />
           </div>
           <div className="Rec-paragraph">
-            <h1 className="Rec-paragraph-Headers">Custom Your Own!</h1>
+            <h1 className="Rec-paragraph-Headers">News</h1>
             <p className="Rec-paragraph-Paragraph">
               สร้างสไตล์ของคุณเอง! เลือกผ้าที่คุณชื่นชอบ ทำให้เสื้อของคุณไม่เหมือนใคร! เริ่มต้นที่ O'Clock และเป็นส่วนหนึ่งของการสร้างสรรค์แฟชั่นของคุณได้เลย!
             </p>
-            <button className="Button-Paragraph" onClick={() => window.location.href='../php/Custom.php'}>ทดลองใช้</button>
+            
           </div>
         </div>
 
