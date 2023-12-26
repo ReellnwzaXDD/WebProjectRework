@@ -50,7 +50,6 @@ export default function Shop(){
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>O'clock</title>
             <link rel="icon" type="image/x-icon" href="/img/logo.png" />
             <link rel="stylesheet" href="/css/style-Shop.css" />
             <link rel="stylesheet" href="/css/style.css" />
@@ -61,42 +60,7 @@ export default function Shop(){
             <link rel="stylesheet" href="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.css" />
             <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
         </head>
-            <div>
-       
-        <nav id="side" style={{ display: 'none' }}>
-            {/* ... */}
-        </nav>
-
-        <div className="hamburger-menu">
-          <input id="menu__toggle" type="checkbox" />
-          <label className="menu__btn" htmlFor="menu__toggle">
-            <span></span>
-          </label>
-          <ul className="menu__box">
-            <li><button className="menu__item" onClick={()=> Navi("/")} >Home</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/shop")} >SHOP</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/login")} >Login</button></li>
-          </ul>
-        </div>
-
-        {/* Menu Verticle */}
-        <div className="top-menu">
-          <img src="/img/Shadow.png" className="Shadow" title="Shadow" />
-          <nav className="main-nav">
-            <ul className="menu-left">
-              <button onClick={()=> Navi("/")}><img src="/img/logo.png" className="logo" alt="Logo" /></button>
-              <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
-         
-  
-            </ul>
-            <div className="menu-right">
-              <input type="search" className="searchbox" placeholder="Search Products" />
-              <a href="./php/Cartbeforelogin.php"><img src="/img/cart.png" className="cart" alt="Cart" /></a>
-              <button onClick={()=> Navi("/login")} > <img src="/img/Login.png" className="login" alt="Login" /></button>
-            </div>
-          </nav>
-        </div>
-
+          <div>
         <div className="Shop-filter flex items-center justify-between">   
         </div>
         <div>

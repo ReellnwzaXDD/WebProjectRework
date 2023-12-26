@@ -1,22 +1,5 @@
 //small product cart
-const smallcart = (data) => {
-    return (
-        <div class="numberlist">
-            <img src="${data.img}" class="numberlist-img">
-            <div class="numberlist-text">
-                <p class="numberlist-name">${data.name}</p>
-                <p class="numberlist-des">${data.shortDest}</p>
-            </div>
-            <div class="quantity">
-                <button class="quantity-btn decrease">-</button>
-                <h3 class="item-quantity">${data.item}</h3>
-                <button class="quantity-btn increase">+</button>
-            </div>
-            <h2 class="numberlist-price" data-price="${data.price}">${data.price * data.item}</h2>
-            <button class="numberlist-del-btn"><ion-icon name="trash-sharp"></ion-icon></button>
-        </div>
-    );
-}
+
 
 let total = 0;
 const setproduct = (name) => {

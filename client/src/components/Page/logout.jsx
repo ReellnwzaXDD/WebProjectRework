@@ -5,7 +5,7 @@ export default function Logout(){
     useEffect(() => {
         sessionStorage.removeItem('id');
         sessionStorage.removeItem('username');
-        sessionStorage.setItem('isLoggedIn',false);
+        sessionStorage.removeItem('isLoggedIn');
         setTimeout(() => {
             Navi('/');
         }, 2000);

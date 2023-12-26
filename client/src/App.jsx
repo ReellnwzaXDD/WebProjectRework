@@ -1,23 +1,36 @@
-import { BrowserRouter , NavLink, Routes, Route} from 'react-router-dom';
+import { BrowserRouter , Routes, Route} from 'react-router-dom';
 import Main from './components/Page/main'
 import Error from './components/Page/Error';
 import Login from './components/Page/login';
 import Register from './components/Page/register';
 import Shop from './components/Page/Shop';
 import Logout from './components/Page/logout';
+import Cart from './components/Page/cart';
+import Navbar from './components/shared/navbar';
+
+import Store from './components/Page/Store';
+import ProductsContextProvider from './components/Page/Productscontext';
+import CartContextProvider from './components/Page/cartcontext';
 function App() {
   
   return (
     <BrowserRouter>
-      <Routes>
-            <Route path='/' element={<Main />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/magazine' element={<Main />} />
-            <Route path='/shop' element={<Shop />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/logout' element={<Logout />} />
-            <Route path='*' element={<Error />} />
-      </Routes>
+      <ProductsContextProvider>
+        <CartContextProvider>
+          <Navbar />
+          <Routes>
+                <Route path='/' element={<Main />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/magazine' element={<Main />} />
+                <Route path='/shop' element={<Shop />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/cart2' element={<Store />} />
+                <Route path='*' element={<Error />} />
+          </Routes>
+        </CartContextProvider>
+      </ProductsContextProvider>
     </BrowserRouter>
 
    

@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
+
 
 export default function Main(){
-    let Navi = useNavigate();
+    
     return(
         <html lang="en" data-theme="emerald">
       <head>
@@ -17,38 +17,7 @@ export default function Main(){
         <script src="../js/app.js"></script>
       </head>
       <body>
-        {/* Menu Herizon */}
-        <div className="hamburger-menu">
-          <input id="menu__toggle" type="checkbox" />
-          <label className="menu__btn" htmlFor="menu__toggle">
-            <span></span>
-          </label>
-          <ul className="menu__box">
-            <li><button className="menu__item" onClick={()=> Navi("/")} >Home</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/shop")} >SHOP</button></li>
-            <li><button className="menu__item" onClick={()=> Navi("/login")} >Login</button></li>
-          </ul>
-        </div>
-
-        {/* Menu Verticle */}
-        <div className="top-menu">
-          <img src="/img/Shadow.png" className="Shadow" title="Shadow" />
-          <nav className="main-nav">
-            <ul className="menu-left">
-            <button onClick={()=> Navi("/")}><img src="/img/logo.png" className="logo" alt="Logo" /></button>
-              <li><button onClick={()=> Navi("/shop")} >SHOP</button></li>
-             
-             
-  
-            </ul>
-            <div className="menu-right">
-              <input type="search" className="searchbox" placeholder="Search Products" />
-              <a href="./php/Cartbeforelogin.php"><img src="/img/cart.png" className="cart" alt="Cart" /></a>
-              {/* <a href="./php/login.php"><img src="/img/Login.png" className="login" alt="Login" /></a> */}
-              <button onClick={()=> Navi("/login")} > <img src="/img/Login.png" className="login" alt="Login" /></button>
-            </div>
-          </nav>
-        </div>
+        
         
         {/* Banner */}
         <div className="Banner">

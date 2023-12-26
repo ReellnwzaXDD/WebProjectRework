@@ -9,7 +9,7 @@ export default function Login(){
     useEffect(() => {
       // Check if the user is already logged in
       const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-  
+      console.log(isLoggedIn);
       if (isLoggedIn) {
         // Redirect to another page, e.g., the dashboard
         Navi('/shop');
