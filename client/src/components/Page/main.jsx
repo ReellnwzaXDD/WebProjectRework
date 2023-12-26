@@ -24,12 +24,11 @@ export default function Main(){
             <span></span>
           </label>
           <ul className="menu__box">
-            <li><a className="menu__item" href="index.php">Home</a></li>
-            <li><a className="menu__item" href="/php/Shop.php">Shop</a></li>
-            <li><a className="menu__item" href="/php/Magazine.php">Magazine</a></li>
-            <li><a className="menu__item" href="/php/Custom.php">Custom Your Own</a></li>
-            {/* <li><a className="menu__item" href="../Page/login.jsx">Login</a></li> */}
-            <li><a className="menu__item" href="../Page/login.jsx">Login</a></li>
+            <li><button className="menu__item" onClick={()=> Navi("/")} >Home</button></li>
+            <li><button className="menu__item" onClick={()=> Navi("/shop")} >SHOP</button></li>
+            <li><button className="menu__item" onClick={()=> Navi("/magazine")} >MAGAZINE</button></li>
+            <li><button className="menu__item" onClick={()=> Navi("/custom")} >CUSTOM YOUR OWN</button></li>
+            <li><button className="menu__item" onClick={()=> Navi("/login")} >Login</button></li>
           </ul>
         </div>
 

@@ -133,6 +133,13 @@ app.post('/register',(req,res)=>{
  * /chkusername:
  *  get:
  *    summary: qurry username chk available
+ *    parameters:
+ *     - in: path
+ *       name: username
+ *       schema:
+ *          type: string
+ *       required: true
+ *       description: Username that user input to check by DB
  *    responses:
  *      200:
  *        description: Successful response
@@ -161,12 +168,32 @@ app.get('/chkusername',(req,res)=>{
     
   })
 })
+/**
+ * @swagger
+ * /img/normal:
+ *  get:
+ *    summary: qurry IMG path
+*     parameters:
+ *     - in: path
+ *       name: IMG path
+ *       schema:
+ *          type: string
+ *       required: true
+ *       description: IMG path to DB
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
 
 app.get('/img/normal',(req,res)=>{
-  const { page = 1, itemsPerPage = 16 } = req.query;
-  const offset = (page - 1) * itemsPerPage;
-  
-    const sql = "SELECT images.image_path FROM images JOIN products ON images.IMG_ID = products.IMG_ID LIMIT ?, ?";
+    const { page = 1, itemsPerPage = 16, sortType } = req.query;
+    const offset = (page - 1) * itemsPerPage;
+    const validSortTypes = ['ASC', 'DESC'];
+    const sanitizedSortType = validSortTypes.includes(sortType) ? sortType : '';
+    const sql = `SELECT images.image_path FROM images JOIN products ON images.IMG_ID = products.IMG_ID ORDER BY images.image_path ${sanitizedSortType} LIMIT ?, ?`;
     db.query(sql,[offset,itemsPerPage],(err,result)=>{
       if(err){
         console.error(err);
@@ -178,38 +205,6 @@ app.get('/img/normal',(req,res)=>{
   
 })
 
-app.get('/img/sortmax',(req,res)=>{
-  const { page = 1, itemsPerPage = 16 } = req.query;
-  const offset = (page - 1) * itemsPerPage;
-  
-    const sql = "SELECT image_path FROM images JOIN products ON images.IMG_ID=products.IMG_ID ORDER BY products.price DESC LIMIT ?, ?";
-    db.query(sql,[offset,itemsPerPage],(err,result)=>{
-      if(err){
-        console.error(err);
-        return res.status(500).json({ success: false,message: 'Internal Server Error'});
-      }
-      const imagePaths = result.map(result => result.image_path);
-      res.json({ imagePaths });
-    })
-  
-    
-  
-})
-
-app.get('/img/sortmin',(req,res)=>{
-  const { page = 1, itemsPerPage = 16 } = req.query;
-  const offset = (page - 1) * itemsPerPage;
-  const sql = "SELECT image_path FROM images JOIN products ON images.IMG_ID=products.IMG_ID ORDER BY products.price ASC LIMIT ?, ?";
-  db.query(sql,[offset,itemsPerPage],(err,result)=>{
-    if(err){
-      console.error(err);
-      return res.status(500).json({ success: false,message: 'Internal Server Error'});
-    }
-    const imagePaths = result.map(result => result.image_path);
-    res.json({ imagePaths });
-  })
-
-})
 
 
 
