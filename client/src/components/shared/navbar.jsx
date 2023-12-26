@@ -26,8 +26,8 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="fixed" style={{ background: '#f2f6fc', border: '20px' }}>
+      <Container maxWidth="xl" style={{ background: '#f2f6fc' }}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"
@@ -43,12 +43,13 @@ const Navbar = () => {
               textDecoration: "none",
             }}>
             <Link className={Styles.productLink} to="/">
-              <img src="/img/logo.png"class="logo"/>
+              <img src="/img/logo.png" /> 
             </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
+              style={{ background: '#0c0c0c' }}
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -80,29 +81,22 @@ const Navbar = () => {
                     <li>
                       <Link
                         className={Styles.listContainerLink2}
-                        to="/products/men's clothing">
-                        men's
+                        to="/shop clothing">
+                        Shop
                       </Link>
                     </li>
                     <li>
                       <Link
                         className={Styles.listContainerLink2}
                         to="/products/women's clothing">
-                        women's
+                        Kid mai ook
                       </Link>
                     </li>
                     <li>
                       <Link
                         className={Styles.listContainerLink2}
-                        to="/products/jewelery">
-                        jewelery
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className={Styles.listContainerLink2}
-                        to="/products/electronics">
-                        electronics
+                        to="/login">
+                        Login
                       </Link>
                     </li>
                   </ul>
@@ -125,11 +119,17 @@ const Navbar = () => {
               color: "inherit",
               textDecoration: "none",
             }}>
-            <Link className={Styles.productLink} to="/products">
-              Poducts
+            <Link className={Styles.productLink} to="/">
+              Oclock
             </Link>
           </Typography>
-          
+          <Box sx={{ flexGrow: 0 }}>
+            <div className={Styles.iconContainer}>
+              <Link className={Styles.iconContainer} to="/shop">
+                <p className={Styles.pitem}>Shop</p>
+              </Link>
+            </div>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <div className={Styles.iconContainer}>
               <Link className={Styles.iconContainer} to="/cart">
