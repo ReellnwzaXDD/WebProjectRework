@@ -1,3 +1,0 @@
-- name: Docker Compose with Tests Action
-  uses: adambirds/docker-compose-action@v1.3.0
-            
