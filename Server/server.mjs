@@ -173,7 +173,7 @@ app.get('/chkusername' ,(req,res)=>{
  * @swagger
  * /img/normal:
  *  get:
- *    summary: qurry image path
+ *    summary: qurry product to store page
  *    parameters:
  *     - in: path
  *       name: imagepath
@@ -205,25 +205,7 @@ app.get('/img/normal',(req,res)=>{
   
 })
 
-app.get('/cart',(req,res)=>{
-  const {pid} = req.query;
 
-  const sql = "SELECT images.image_path , products.price , products.product_name FROM images JOIN products ON images.IMG_ID = products.IMG_ID WHERE PID = ?";
-  db.query(sql,[pid],(err,result)=>{
-    if(err){
-      console.error('Error executing SQL Qurry: ',err);
-      return res.status(500).json({ success: false,message: 'Internal Server Error'});
-    }else{  
-      if(err){
-        console.error('Error inserting into the second table:', err);
-        res.status(500).json({ success: false,message: 'Internal Server Error'});
-      }else{
-        const products_table = result.map(result =>({ pname:result.product_name, price:result.price, img_path:result.image_path }));
-        res.json({ products_table });
-      }
-    }
-  })
-})
 
 
 

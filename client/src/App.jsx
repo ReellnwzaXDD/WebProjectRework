@@ -6,7 +6,7 @@ import Register from './components/Page/register';
 import Logout from './components/Page/logout';
 import Cart from './components/Page/cart';
 import Navbar from './components/shared/navbar';
-
+import AddressForm from './components/Page/checkout/addressform';
 import Store from './components/Page/Store';
 import ProductsContextProvider from './components/Page/Productscontext';
 import CartContextProvider from './components/Page/cartcontext';
@@ -20,12 +20,11 @@ function App() {
           <Routes>
                 <Route path='/' element={<Main />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/magazine' element={<Main />} />
                 <Route path='/shop' element={<Store />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/cart' element={<Cart />} />
-                <Route path='/cart2' element={<Store />} />
+                <Route path='/checkout' element={<AddressForm />} />
                 <Route path='*' element={<Error />} />
           </Routes>
         </CartContextProvider>

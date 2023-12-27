@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { isInCart, itemCount, shorten } from "../shared/functions.js";
-import { CartContext } from "./cartcontext";
+import { CartContext } from "./cartcontext.jsx";
 import trash from "../../assets/trash.svg";
 import Styles from "../css/Product.module.css";
 
