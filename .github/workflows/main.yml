@@ -29,7 +29,6 @@ jobs:
 
       - name: Build and run Docker Compose services
         run: |
-          cd ../../../
           pwd
           docker-compose up -d
 
