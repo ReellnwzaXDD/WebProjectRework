@@ -29,14 +29,14 @@ jobs:
 
       - name: Build and run Docker Compose services
         run: |
-          cd WebProjectRework
+          
           pwd
           ls -l
           docker-compose -f docker-compose.yml up -d
 
       - name: Run tests (Replace with your test command)
         run: |
-          cd WebProjectRework
+          
           npm install
           npm test
 
