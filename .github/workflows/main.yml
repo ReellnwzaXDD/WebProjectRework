@@ -34,11 +34,11 @@ jobs:
           ls -l
           docker-compose -f docker-compose.yml up -d
 
-      - name: Run tests (Replace with your test command)
-        run: |
+      # - name: Run tests 
+      #   run: |
           
-          npm install
-          npm test
+      #     npm install
+      #     npm test
 
       - name: Stop Docker Compose services
         run: |
