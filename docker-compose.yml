@@ -15,7 +15,7 @@ services:
     ports:
       - "9906:3306"
   server:
-    build: ./server
+    build: ./Server
     ports:
       - "3001:3001"
     depends_on:
