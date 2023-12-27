@@ -31,7 +31,8 @@ jobs:
         run: |
           cd ../
           pwd
-          docker-compose -f WebProjectRework/docker-compose.yml up -d
+          ls -l
+          docker-compose -f docker-compose.yml up -d
 
       - name: Run tests (Replace with your test command)
         run: |
