@@ -29,9 +29,11 @@ jobs:
         run: |
           docker-compose up -d
 
-      # - name: Run tests (Replace with your test command)
-      #   run: |
-      #     # Add your test command here
+      - name: Run tests (Replace with your test command)
+        run: |
+          cd path/to/your/project
+          npm install
+          npm test
 
       - name: Stop Docker Compose services
         run: |
