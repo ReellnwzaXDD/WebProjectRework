@@ -4,7 +4,6 @@ const ImageGallery = () => {
   const [imagePaths, setImagePaths] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState(null);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,22 +50,7 @@ const ImageGallery = () => {
     setSortType(type);
   };
 
-  const addToCart = (result) => {
-    // Check if the item is already in the cart
-    const isItemInCart = cart.some((item) => item.id === result.id);
 
-    if (isItemInCart) {
-      // If the item is already in the cart, you might want to update the quantity
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === result.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      // If the item is not in the cart, add it with quantity 1
-      setCart((prevCart) => [...prevCart, { ...result, quantity: 1 }]);
-    }
-  };
   return (
     <div>
       <div className="dropdown">

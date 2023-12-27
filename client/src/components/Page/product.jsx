@@ -7,8 +7,7 @@ import trash from "../../assets/trash.svg";
 import Styles from "../css/Product.module.css";
 
 const Product = ({ productData }) => {
-  const { id, title, price, category, image, rating } = productData;
-  const { rate } = rating;
+  const { id, title, price, category, image } = productData;
   const { state, dispatch } = useContext(CartContext);
   return (
     <div className={Styles.container}>
@@ -20,10 +19,8 @@ const Product = ({ productData }) => {
       />
       <h3>{shorten(title)}</h3>
       <p>{price} $</p>
-      <p>Category : {category} </p>
-      <Rating name="half-rating" defaultValue={rate} precision={0.5} readOnly />
       <div className={Styles.linkContainer}>
-        <Link to={`/products/${category}/${id}`}>Details</Link>
+        {/* <Link to={`/products/${category}/${id}`}>Details</Link> */}
         <div className={Styles.buttonContainer}>
           {itemCount(state, id) > 1 && (
             <button
@@ -57,7 +54,7 @@ const Product = ({ productData }) => {
               onClick={() =>
                 dispatch({ type: "ADD_ITEM", payload: productData })
               }>
-              Add ro Cart
+              Add to Cart
             </button>
           )}
         </div>

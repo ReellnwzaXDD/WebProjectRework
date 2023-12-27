@@ -193,14 +193,14 @@ app.get('/img/normal',(req,res)=>{
     const offset = (page - 1) * itemsPerPage;
     const validSortTypes = ['ASC', 'DESC'];
     const sanitizedSortType = validSortTypes.includes(sortType) ? sortType : '';
-    const sql = `SELECT images.image_path , products.price , products.PID FROM images JOIN products ON images.IMG_ID = products.IMG_ID ORDER BY products.price ${sanitizedSortType} LIMIT ?, ?`;
+    const sql = `SELECT images.image_path , products.price , products.PID, products.product_name FROM images JOIN products ON images.IMG_ID = products.IMG_ID ORDER BY products.price ${sanitizedSortType} LIMIT ?, ?`;
     db.query(sql,[offset,itemsPerPage],(err,result)=>{
       if(err){
         console.error(err);
         return res.status(500).json({ success: false,message: 'Internal Server Error'});
       }
-      const imagePaths = result.map(result => ({ image_path: result.image_path, price: result.price, pid: result.PID }));
-      res.json({ imagePaths });
+      const imagePaths = result.map(result => ({ image: result.image_path, price: result.price, id: result.PID, title:result.product_name }));
+      res.json(imagePaths);
     })
   
 })

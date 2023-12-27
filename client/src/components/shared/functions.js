@@ -6,7 +6,7 @@ export const shorten = (title) => {
       return `${splitedTitle[0]} ${splitedTitle[1]}`;
     }
   };
-  export const isInCart = (state, id) => {
+  export const isInCart = (state, id) => { // keep item in state use ID for Uniqe
     const result = !!state.selecedItems.find((item) => item.id === id);
     return result;
   };
