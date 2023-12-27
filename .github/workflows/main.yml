@@ -33,7 +33,7 @@ jobs:
 
       - name: Run tests (Replace with your test command)
         run: |
-          cd path/to/your/project
+          cd WebProjectRework
           npm install
           npm test
 
