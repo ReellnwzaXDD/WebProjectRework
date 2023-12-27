@@ -24,7 +24,7 @@ const Cart = () => {
           </p>
           <p>
             <span>Total payments : </span>
-            {state.total} $
+            {state.total} ฿
           </p>
           <div className={Styles.buttonContainer}>
             <button

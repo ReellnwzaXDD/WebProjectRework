@@ -18,7 +18,7 @@ const Product = ({ productData }) => {
         style={{ width: "250px" }}
       />
       <h3>{shorten(title)}</h3>
-      <p>{price} $</p>
+      <p>{price} ฿</p>
       <div className={Styles.linkContainer}>
         {/* <Link to={`/products/${category}/${id}`}>Details</Link> */}
         <div className={Styles.buttonContainer}>

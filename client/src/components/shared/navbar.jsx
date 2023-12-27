@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import shopIcon from "/img/cart.png";
+import LoginIcon from "/img/Login.png";
 import { CartContext } from "../Page/cartcontext";
 import Styles from "../css/Navbar.module.css";
 import AppBar from "@mui/material/AppBar";
@@ -137,6 +138,14 @@ const Navbar = () => {
                 <img src={shopIcon} alt="shop" />
               </Link>
               <span>{state.itemsCounter}</span>
+            </div>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <div className={Styles.iconContainer}>
+              <Link className={Styles.iconContainer} to="/login" >
+                <img src={LoginIcon} alt="shop" />
+              </Link>
+              
             </div>
           </Box>
         </Toolbar>

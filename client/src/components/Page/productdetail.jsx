@@ -31,7 +31,7 @@ const ProductDetails = () => {
         />
 
         <div className={Styles.buttonContainer}>
-          <span className={Styles.price}> {price} $ </span>
+          <span className={Styles.price}> {price} ฿ </span>
 
           <div className={Styles.buttonContainer}>
             {itemCount(state, product.id) > 1 && (

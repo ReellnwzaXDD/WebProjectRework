@@ -11,7 +11,7 @@ const ShopCart = ({ data }) => {
       <img className={Styles.productImage} src={image} alt={title} />
       <div className={Styles.data}>
         <h3>{shorten(title)}</h3>
-        <p>{price} $</p>
+        <p>{price} ฿</p>
       </div>
       <div>
         <span className={Styles.quantity}>{quantity}</span>

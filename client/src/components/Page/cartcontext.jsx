@@ -18,7 +18,7 @@ const sumItem = (items) => {
   return { total, itemsCounter };
 };
 const cartRducer = (state, action) => {
-  switch (action.type) {
+  switch (action.type) { // switch case to check btn in store page 
     case "ADD_ITEM":
       if (!state.selecedItems.find((item) => item.id === action.payload.id)) {
         state.selecedItems.push({ ...action.payload, quantity: 1 });

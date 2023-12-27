@@ -58,18 +58,10 @@ export default function Login(){
     return(
       <html lang="en" data-theme="emerald">
         <head>
-            <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>O'clock</title>
-            <link rel="icon" type="image/x-icon" href="/img/logo.png" />
             <link rel="stylesheet" href="/css/stylelog.css" />
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-            <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap" rel="stylesheet" />
-            <script src="app.js" defer></script>
-            <link rel="stylesheet" href="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.css" />
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
         </head>
+        <br/><br/>
         <div className="Login-page">
         <div className="mybox">
           <form className="Loginform" onSubmit={handleLogin}>
