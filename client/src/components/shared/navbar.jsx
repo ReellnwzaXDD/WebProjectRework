@@ -12,6 +12,7 @@ import Menu from "@mui/material/Menu/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
+import { spacing } from '@mui/system';
 
 const Navbar = () => {
   const { state } = useContext(CartContext);
@@ -42,12 +43,12 @@ const Navbar = () => {
               letterSpacing: ".2rem",
               textDecoration: "none",
             }}>
-            <Link className={Styles.productLink} to="/">
+            <Link className={Styles.productLink2} to="/">
               <img src="/img/logo.png" /> 
             </Link>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 3, display: { xs: "flex", md: "none" } }}>
             <IconButton
               style={{ background: '#0c0c0c' }}
               size="large"
@@ -123,7 +124,7 @@ const Navbar = () => {
               Oclock
             </Link>
           </Typography>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 2 }}>
             <div className={Styles.iconContainer}>
               <Link className={Styles.iconContainer} to="/shop">
                 <p className={Styles.pitem}>Shop</p>
@@ -132,7 +133,7 @@ const Navbar = () => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <div className={Styles.iconContainer}>
-              <Link className={Styles.iconContainer} to="/cart">
+              <Link className={Styles.iconContainer} to="/cart" >
                 <img src={shopIcon} alt="shop" />
               </Link>
               <span>{state.itemsCounter}</span>

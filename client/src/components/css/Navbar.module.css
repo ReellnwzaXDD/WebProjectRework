@@ -12,6 +12,7 @@
     display: flex;
     background-color: #fff;
     justify-content: space-between;
+    /* justify-content: flex-start; */
     align-items: center;
     height: 40px;
     padding: 15px 180px;
@@ -34,6 +35,9 @@
   
   .iconContainer {
     position: relative;
+    /* left: 45rem;
+    top: 50%; */
+    /* transform: translateY(-50%); */
   }
   
   .iconContainer img {
@@ -44,6 +48,7 @@
   .iconContainer span {
     position: absolute;
     top: 0;
+    /* left: 47rem; */
     right: 0;
     background-color: #0c0c0c;
     border-radius: 50%;
