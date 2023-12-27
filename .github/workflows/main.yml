@@ -3,7 +3,7 @@ name: Docker Compose Workflow test
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -22,8 +22,8 @@ jobs:
 
       - name: Set up Docker Compose
         run: |
-          apt-get update
-          apt-get -y install docker-compose
+          sudo apt-get update
+          sudo apt-get -y install docker-compose
 
       - name: Build and run Docker Compose services
         run: |
