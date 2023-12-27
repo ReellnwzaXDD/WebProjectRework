@@ -19,8 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          path: WebProjectRework
+        # with:
+        #   path: WebProjectRework
 
       - name: Set up Docker Compose
         run: |
@@ -31,7 +31,7 @@ jobs:
         run: |
           cd ../
           pwd
-          docker-compose up -d
+          docker-compose -f WebProjectRework/docker-compose.yml up -d
 
       - name: Run tests (Replace with your test command)
         run: |
