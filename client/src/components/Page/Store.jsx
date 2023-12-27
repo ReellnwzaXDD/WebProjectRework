@@ -1,4 +1,3 @@
-import React, { useContext,useState,useEffect } from "react";
 import Styles from "../css/Store.module.css";
 
 // Context
@@ -9,7 +8,7 @@ import Product from "./product";
 
 const Store = () => {
   //const products = useContext(ProductsContext);
-  const { products, currentPage, setCurrentPage } = useProductsContext();
+  const { products, currentPage, setCurrentPage, setSortType} = useProductsContext();
   // console.log(currentPage);
 
   const handleNextPage = () => {
@@ -29,11 +28,12 @@ const Store = () => {
   
   return (
     <div data-theme="emerald">
-        <div className="dropdown">
+      <div className={Styles.container}></div>
+        <div className="dropdown dropdown-end" style={{ left: '5rem' }}>
         <div tabIndex={0} role="button" className="btn m-1">
           Sort by Feature
         </div>
-        <div className="dropdown-content" style={{ left: '1px' }}>
+        <div className="dropdown-content" style={{ left: '10px' }}>
           <button
             className="SortBT"
             onClick={() => handleSortSubmit('DESC')}
@@ -47,8 +47,9 @@ const Store = () => {
             Sort by MIN
           </button>
         </div>
-      </div>
+      </div>   
     <div className={Styles.container}>
+      
       {products.map((item) => (
         <Product key={item.id} productData={item} />
       ))}
