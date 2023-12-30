@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { ProductsContext } from "./Productscontext";
 import { isInCart, itemCount } from "../shared/functions";
 import { CartContext } from "./cartcontext";
-// import trash from "../assets/icons/trash.svg";
+import trash from "../../assets/trash.svg";
 import Styles from "../css/ProductD.module.css";
 
 const ProductDetails = () => {

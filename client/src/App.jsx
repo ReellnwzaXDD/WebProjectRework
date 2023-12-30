@@ -14,6 +14,7 @@ function App() {
   
   return (
     <BrowserRouter>
+    
       <ProductsContextProvider>
         <CartContextProvider>
           <Navbar />

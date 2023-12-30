@@ -11,11 +11,17 @@ const port = 3001;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+// const dbOptions = { 
+//   host: '127.0.0.1',
+//   user: 'oclockne',
+//   password: 'Thongsongsom@1',
+//   database: 'oclockne_webtest',
+// };
 const dbOptions = { 
   host: '127.0.0.1',
-  user: 'oclockne',
-  password: 'Thongsongsom@1',
-  database: 'oclockne_Webtest',
+  user: 'root',
+  password: '',
+  database: 'oclockne_webtest',
 };
 const db = mysql.createConnection(dbOptions);
 

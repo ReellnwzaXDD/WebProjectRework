@@ -39,23 +39,31 @@ const cartRducer = (state, action) => {
         ...sumItem(newSelecedItems),
       };
     case "INCREASE":
-      const indexI = state.selecedItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      state.selecedItems[indexI].quantity++;
+      const increasedItems = state.selecedItems.map((item) => {
+      if (item.id === action.payload.id) {
+        return { ...item, quantity: item.quantity + 1 };
+      }
+      return item;
+      });
       return {
-        ...state,
-        ...sumItem(state.selecedItems),
-      };
+      ...state,
+      selecedItems: increasedItems,
+      ...sumItem(increasedItems),
+    };
     case "DECREASE":
-      const indexD = state.selecedItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      state.selecedItems[indexD].quantity--;
+      const decreasedItems = state.selecedItems.map((item) => {
+        if (item.id === action.payload.id) {
+          // Ensure the quantity does not go below 1
+          const newQuantity = Math.max(item.quantity - 1, 1);
+          return { ...item, quantity: newQuantity };
+        }
+        return item;
+      });
       return {
         ...state,
-        ...sumItem(state.selecedItems),
-      };
+        selecedItems: decreasedItems,
+        ...sumItem(decreasedItems),
+    };
     case "CLEAR":
       return {
         selecedItems: [],

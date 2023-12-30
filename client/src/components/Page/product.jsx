@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { Rating } from "@mui/material";
 import { isInCart, itemCount, shorten } from "../shared/functions.js";
 import { CartContext } from "./cartcontext.jsx";
 import trash from "../../assets/trash.svg";
-import Styles from "../css/Product.module.css";
+import Styles from "../css/product.module.css";
 
 const Product = ({ productData }) => {
   const { id, title, price, category, image } = productData;
