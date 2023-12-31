@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "./cartcontext.jsx";
-import Styles from "../css/ShopCart.module.css";
+import Styles from "../css/Shopcart.module.css";
 import { shorten } from "../shared/functions.js"
 import trash from "../../assets/trash.svg";
 const ShopCart = ({ data }) => {

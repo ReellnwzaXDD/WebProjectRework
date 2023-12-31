@@ -51,7 +51,7 @@ const Cart = () => {
         <div className={Styles.complete}>
           <img src={loading} alt="tt" style={{ width: "100%" }} />
           <h3> Back to Shop </h3>
-          <Link to="/products"> Shop</Link>
+          <Link to="/shop"> Shop</Link>
         </div>
       )}
     </div>

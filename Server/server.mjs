@@ -11,18 +11,31 @@ const port = 3001;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
 // const dbOptions = { 
 //   host: '127.0.0.1',
 //   user: 'oclockne',
 //   password: 'Thongsongsom@1',
+//   database: 'oclockne_Webtest',
+// };
+// run in localhost
+// const dbOptions = { 
+//   host: '127.0.0.1',
+//   user: 'root',
+//   password: '',
 //   database: 'oclockne_webtest',
 // };
+
+//run in docker
 const dbOptions = { 
-  host: '127.0.0.1',
-  user: 'root',
-  password: '',
-  database: 'oclockne_webtest',
+  host: 'db',
+  user: 'oclockne',
+  password: 'Thongsongsom@1',
+  database: 'oclockne_Webtest',
+  port: 3306,
+  Promise: global.Promise,
 };
+
 const db = mysql.createConnection(dbOptions);
 
 
