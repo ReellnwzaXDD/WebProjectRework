@@ -26,8 +26,14 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `category`
 --
-CREATE DATABASE oclockne_webtest;
+-- Create the database
+CREATE DATABASE IF NOT EXISTS oclockne_webtest;
 USE oclockne_webtest;
+
+-- Create user and grant privileges
+CREATE USER 'oclockne'@'%' IDENTIFIED BY 'Thongsongsom@1';
+GRANT ALL PRIVILEGES ON oclockne_webtest.* TO 'oclockne'@'%';
+FLUSH PRIVILEGES;
 
 CREATE TABLE `category` (
   `CID` int(10) NOT NULL,

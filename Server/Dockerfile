@@ -16,5 +16,8 @@ COPY . .
 # Expose the port that the app will run on
 EXPOSE 3001
 
+# Healthcheck (optional)
+HEALTHCHECK --interval=30s --timeout=5s CMD curl -f http://localhost:3001/ || exit 1
+
 # Start the application
 CMD ["node", "server.mjs"]

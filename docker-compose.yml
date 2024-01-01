@@ -5,12 +5,13 @@ services:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=Thongsongsom@1
-      - MYSQL_DATABASE=oclockne_Webtest
+      - MYSQL_DATABASE=oclockne_webtest
       - MYSQL_USER=oclockne
       - MYSQL_PASSWORD=Thongsongsom@1
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
-      - "./DB/:/docker-entrypoint-initdb.d"
+      - "./DB/:/docker-entrypoint-initdb.d/setup.sql"
+      # - "./DB/:/docker-entrypoint-initdb.d"
      
     restart: always
     ports:
