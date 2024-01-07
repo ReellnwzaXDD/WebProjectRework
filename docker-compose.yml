@@ -10,9 +10,7 @@ services:
       - MYSQL_PASSWORD=Thongsongsom@1
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
-      - "./DB/:/docker-entrypoint-initdb.d/setup.sql"
-      # - "./DB/:/docker-entrypoint-initdb.d"
-     
+      - "./DB:/docker-entrypoint-initdb.d"
     restart: always
     ports:
       - "9906:3306"
@@ -22,12 +20,19 @@ services:
       - "3001:3001"
     depends_on:
       - db
-    
   client:
     build: ./client
     ports:
       - "5173:5173"
     depends_on:
       - server
-   
-    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
