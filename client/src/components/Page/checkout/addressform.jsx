@@ -4,8 +4,9 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-
+import { useNavigate  } from 'react-router-dom';
 export default function AddressForm() {
+  let Navi = useNavigate();
   return (
     <React.Fragment >
     <div data-theme="emerald">
@@ -104,6 +105,9 @@ export default function AddressForm() {
             label="Use this address for payment details"
           />
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <button className="btn btn-outline btn-success "  onClick={()=> Navi("/PaymentForm")} >Next</button> 
       </Grid>
       </div>
     </React.Fragment>
