@@ -10,7 +10,8 @@ services:
       - MYSQL_PASSWORD=Thongsongsom@1
       - MYSQL_ALLOW_EMPTY_PASSWORD=1
     volumes:
-      - "./DB:/docker-entrypoint-initdb.d"
+      - "./DB/:/docker-entrypoint-initdb.d"
+     
     restart: always
     ports:
       - "9906:3306"

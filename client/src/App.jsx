@@ -10,6 +10,8 @@ import AddressForm from './components/Page/checkout/addressform';
 import Store from './components/Page/Store';
 import ProductsContextProvider from './components/Page/Productscontext';
 import CartContextProvider from './components/Page/cartcontext';
+import PaymentForm from './components/Page/checkout/paymentform';
+import Review from './components/Page/checkout/review';
 function App() {
   
   return (
@@ -26,6 +28,8 @@ function App() {
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/checkout' element={<AddressForm />} />
+                <Route path='/payment' element={<PaymentForm />} />
+                <Route path='/summary' element={<Review/>} />
                 <Route path='*' element={<Error />} />
           </Routes>
         </CartContextProvider>

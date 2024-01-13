@@ -14,17 +14,28 @@ const port = 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
+// For Testing in dev env
 const pool = mysql.createPool({
-  //  host: 'db',
-  host: 'localhost',   // For Testing in dev env
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  host: 'localhost',  
+  user: 'root',
+  password: '',
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 });
+
+// const pool = mysql.createPool({
+//   host: 'db',
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+//   port: process.env.DB_PORT,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
 app.use((err, req, res, next) => {
   console.error('Error:', err);
   res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -221,7 +232,10 @@ try {
   }
 });
 
-
+app.post('/checkout', async(req,res)=>{
+  const {address} = req.body;
+  
+})
 
 
 
