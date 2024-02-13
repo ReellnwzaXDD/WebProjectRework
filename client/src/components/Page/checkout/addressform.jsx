@@ -8,9 +8,10 @@ import { useNavigate  } from 'react-router-dom';
 export default function AddressForm() {
   let Navi = useNavigate();
   return (
-    <React.Fragment >
-    <div data-theme="emerald">
-      <Typography variant="h6" gutterBottom>
+    
+    <div data-theme="emerald" className='container mx-auto p-4 mt-20'>
+    <div className='snap-center'>
+      <Typography variant="h6" gutterBottom >
         Shipping address
       </Typography>
       <Grid container spacing={3}>
@@ -110,6 +111,7 @@ export default function AddressForm() {
         <button className="btn btn-outline btn-success "  onClick={()=> Navi("/PaymentForm")} >Next</button> 
       </Grid>
       </div>
-    </React.Fragment>
+      </div>
+    
   );
 }
