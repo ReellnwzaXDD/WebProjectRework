@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "./cartcontext";
 import loading from "../../assets/bouncing-squares.svg";
@@ -8,12 +8,42 @@ import Styles from "../css/Cart.module.css";
 
 const Cart = () => {
   const { state, dispatch } = useContext(CartContext);
+  const [productID, setProductID] = useState('');
+  const [memberID, setMemberID] = useState('');
+  const [amount, setAmount] = useState('');
   let Navi = useNavigate();
+  const handlecheckout = async () => {
+    try {
+        
+        const response = await fetch('http://localhost:3001/checkout', {  
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              productID,
+              memberID,
+              amount,
+            }),
+          });
+
+      const data = await response.json();
+      console.log(data);
+      
+    } catch (error) {
+      console.error('Error during checkout:', error.message);
+    }
+    
+  };
   return (
     <div className={Styles.container}>
       <div className={Styles.cartContainer}>
         {state.selecedItems.map((item) => (
-          <ShopCart key={item.id} data={item} />
+          <ShopCart
+          key={item.id}
+          data={item}
+          
+          />
         ))}
       </div>
 
@@ -28,10 +58,14 @@ const Cart = () => {
             {state.total} ฿
           </p>
           <div className={Styles.buttonContainer}>
-            <button
-              className={Styles.checkout}
-              onClick={() => dispatch({ type: "CHECKOUT" })}>
-              Check Out
+          <button
+            className={Styles.checkout}
+            onClick={() => {
+              dispatch({ type: "CHECKOUT" });
+              handlecheckout();
+            }}
+            >
+            Check Out
             </button>
             <button
               className={Styles.clear}
@@ -43,11 +77,6 @@ const Cart = () => {
       )}
       {state.checkout && (
         Navi('/checkout')
-        // <div className={Styles.complete}>
-        //   <img src={loading} alt="tt" style={{ width: "20%" }} />
-        //   <h3> Checked Out Successfull </h3>
-        //   <Link to="/checkout"> Add some address </Link>
-        // </div>
       )}
       {!state.checkout && state.itemsCounter === 0 && (
         <div className={Styles.complete}>

@@ -1,9 +1,11 @@
-import * as React from 'react';
+import React, { useContext } from "react";
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
+import ShopCart from "../shopcart";
+import { CartContext } from "../cartcontext";
 
 const products = [
   {
@@ -38,8 +40,9 @@ const payments = [
 ];
 
 export default function Review() {
+
   return (
-    <React.Fragment>
+    <div data-theme="emerald" className='container mx-auto p-4 mt-20'>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
@@ -83,6 +86,6 @@ export default function Review() {
           </Grid>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

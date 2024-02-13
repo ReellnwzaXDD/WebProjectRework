@@ -8,7 +8,7 @@ import { useNavigate  } from 'react-router-dom';
 export default function PaymentForm() {
   let Navi = useNavigate();
   return (
-    <React.Fragment>
+    <div data-theme="emerald" className='container mx-auto p-4 mt-20'>
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
@@ -60,7 +60,10 @@ export default function PaymentForm() {
             label="Remember credit card details for next time"
           />
         </Grid>
+        <Grid item xs={12}>
+        <button className="btn btn-outline btn-success "  onClick={()=> Navi("/summary")} >Order</button> 
+        </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

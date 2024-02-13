@@ -108,7 +108,7 @@ export default function AddressForm() {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <button className="btn btn-outline btn-success "  onClick={()=> Navi("/PaymentForm")} >Next</button> 
+        <button className="btn btn-outline btn-success "  onClick={()=> Navi("/payment")} >Next</button> 
       </Grid>
       </div>
       </div>

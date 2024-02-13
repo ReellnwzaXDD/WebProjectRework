@@ -233,7 +233,10 @@ try {
 });
 
 app.post('/checkout', async(req,res)=>{
-  const {address} = req.body;
+  const {productID,memberID,amount} = req.body;
+  
+  console.log(req.body);
+
   
 })
 
