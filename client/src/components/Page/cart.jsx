@@ -11,6 +11,7 @@ const Cart = () => {
   const [productID, setProductID] = useState('');
   const [memberID, setMemberID] = useState('');
   const [amount, setAmount] = useState('');
+  const [itemcount,setitemcount] = useState('');
   let Navi = useNavigate();
   const handlecheckout = async () => {
     try {
@@ -27,8 +28,8 @@ const Cart = () => {
             }),
           });
 
-      const data = await response.json();
-      console.log(data);
+      // const data = await response.json();
+      // console.log(data);
       
     } catch (error) {
       console.error('Error during checkout:', error.message);
@@ -42,7 +43,6 @@ const Cart = () => {
           <ShopCart
           key={item.id}
           data={item}
-          
           />
         ))}
       </div>
@@ -62,7 +62,9 @@ const Cart = () => {
             className={Styles.checkout}
             onClick={() => {
               dispatch({ type: "CHECKOUT" });
-              handlecheckout();
+              setAmount(state.total),
+              setProductID(state.selecedItems),
+              setMemberID(1)
             }}
             >
             Check Out
@@ -76,6 +78,7 @@ const Cart = () => {
         </div>
       )}
       {state.checkout && (
+        handlecheckout(),
         Navi('/checkout')
       )}
       {!state.checkout && state.itemsCounter === 0 && (
