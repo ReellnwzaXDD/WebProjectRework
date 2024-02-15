@@ -1,5 +1,6 @@
 import Styles from "../css/Store.module.css";
-
+import { useEffect } from 'react';
+import { useNavigate  } from 'react-router-dom';
 // Context
 import { useProductsContext } from "./Productscontext";
 
@@ -10,7 +11,7 @@ const Store = () => {
   //const products = useContext(ProductsContext);
   const { products, currentPage, setCurrentPage, setSortType} = useProductsContext();
   // console.log(currentPage);
-
+  let Navi = useNavigate();
   const handleNextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);
   };
@@ -25,6 +26,14 @@ const Store = () => {
     // Update the sorting type state
     setSortType(type);
   };
+
+  useEffect(()=>{
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      alert("You are not login!");
+      Navi('/login');
+    }
+  },[Navi])
   
   return (
     <div data-theme="emerald">

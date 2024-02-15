@@ -232,13 +232,45 @@ try {
   }
 });
 
-app.post('/checkout', async(req,res)=>{
-  const {productID,memberID,amount} = req.body;
-  
-  console.log(req.body);
+app.post('/checkout', async (req, res) => {
+  const data = req.body;
+  const sql = 'INSERT INTO orders (`DATE`, `TIME`, `M_ID`) VALUES ?';
 
-  
-})
+  const values = data.product.map((product) => [
+    new Date().toISOString().slice(0, 10), // Get current date (YYYY-MM-DD)
+    new Date().toISOString().slice(11, 19), // Get current time (HH:MM:SS)
+    data.memberID
+  ]);
+
+  pool.query(sql, [values], (err, result) => {
+    if (err) {
+      console.error('Error inserting data into orders:', err);
+      res.status(500).send('Error inserting data into orders');
+      return;
+    }
+    const orderId = result.insertId;
+    console.log('Order inserted successfully with ID:', orderId);
+    const sql2 = 'INSERT INTO order_detail (`PID`, `OID`, `Amount`) VALUES ?';
+    const valuesSql2 = data.product.map((product) => [
+      product.id,
+      orderId,
+      product.quantity
+    ]);
+    console.log('Values to be inserted into order_detail:', valuesSql2);
+    pool.query(sql2, [valuesSql2], (err, resultSql2) => {
+      if (err) {
+        console.error('Error inserting data into order_detail:', err);
+        res.status(500).send('Error inserting data into order_detail');
+        return;
+      }
+      console.log('Data inserted into order_detail successfully');
+      res.status(200).send('Data inserted into both tables successfully');
+    });
+  });
+
+  console.log(req.body);
+});
+
 
 
 

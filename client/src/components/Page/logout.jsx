@@ -7,8 +7,9 @@ export default function Logout(){
         sessionStorage.removeItem('username');
         sessionStorage.removeItem('isLoggedIn');
         setTimeout(() => {
+            alert("You have been logout!")
             Navi('/');
-        }, 2000);
+        }, 1000);
       });
     return(
         <div>

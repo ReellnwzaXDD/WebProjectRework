@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
-
+import Styles from "../css/login.module.css";
 export default function Login(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -62,13 +62,13 @@ export default function Login(){
             <link rel="stylesheet" href="/css/stylelog.css" />
         </head>
         <br/><br/>
-        <div className="Login-page">
-        <div className="mybox">
-          <form className="Loginform" onSubmit={handleLogin}>
-            <div className="Logintext">
+        <div className={Styles.Login_page}>
+        <div className={Styles.mybox}>
+          <form className={Styles.Loginform} onSubmit={handleLogin}>
+            <div className={Styles.Logintext}>
               <img src="/img/Loginlogo.png" alt="Login Logo" />
             </div>
-            <div className="myinput">
+            <div className={Styles.myinput}>
             <ion-icon name="home" class="text-4xl text-blue-500"></ion-icon>
               <input
                 type="text"
@@ -78,7 +78,7 @@ export default function Login(){
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div className="myinput">
+            <div className={Styles.myinput}>
               <ion-icon name="lock-closed"></ion-icon>
               <input
                 type="password"
@@ -88,7 +88,7 @@ export default function Login(){
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="Remember">
+            <div className={Styles.Remember}>
               <p>
                 <input type="checkbox" value="Remember" />
                 REMEMBER ME!
@@ -96,7 +96,7 @@ export default function Login(){
             </div>
             <input type="submit" value="Login" className="btnlogin" />
             <button className="btn btn-outline btn-success "  onClick={()=> Navi("/")} >Home</button> 
-            <div className="Register">
+            <div className={Styles.Register}>
               <p>
                 IF YOU DON'T HAVE AN ACCOUNT <button onClick={()=> Navi("/register") } className="link link-error" >Register</button>
               </p>
