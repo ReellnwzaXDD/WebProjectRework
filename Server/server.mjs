@@ -234,42 +234,33 @@ try {
 
 app.post('/checkout', async (req, res) => {
   const data = req.body;
-  const sql = 'INSERT INTO orders (`DATE`, `TIME`, `M_ID`) VALUES ?';
+  const insertOrderSql = 'INSERT INTO orders (`DATE`, `TIME`, `M_ID`) VALUES (?,?,?)';
+  const insertOrderDetailSql = 'INSERT INTO order_detail (`PID`, `OID`, `Amount`) VALUES (?,?,?)';
 
-  const values = data.product.map((product) => [
-    new Date().toISOString().slice(0, 10), // Get current date (YYYY-MM-DD)
-    new Date().toISOString().slice(11, 19), // Get current time (HH:MM:SS)
-    data.memberID
-  ]);
-
-  pool.query(sql, [values], (err, result) => {
-    if (err) {
-      console.error('Error inserting data into orders:', err);
-      res.status(500).send('Error inserting data into orders');
-      return;
-    }
-    const orderId = result.insertId;
-    console.log('Order inserted successfully with ID:', orderId);
-    const sql2 = 'INSERT INTO order_detail (`PID`, `OID`, `Amount`) VALUES ?';
-    const valuesSql2 = data.product.map((product) => [
-      product.id,
-      orderId,
-      product.quantity
+  try {
+    const [orderResult] = await pool.execute(insertOrderSql, [
+      new Date().toISOString().slice(0, 10), // Get current date (YYYY-MM-DD)
+      new Date().toISOString().slice(11, 19), // Get current time (HH:MM:SS)
+      data.memberID
     ]);
-    console.log('Values to be inserted into order_detail:', valuesSql2);
-    pool.query(sql2, [valuesSql2], (err, resultSql2) => {
-      if (err) {
-        console.error('Error inserting data into order_detail:', err);
-        res.status(500).send('Error inserting data into order_detail');
-        return;
-      }
-      console.log('Data inserted into order_detail successfully');
-      res.status(200).send('Data inserted into both tables successfully');
+    const orderId = orderResult.insertId;
+    //console.log(orderId);
+    const orderDetailValues = [];
+    data.product.forEach((product) => {
+      const amount = product.quantity;
+      orderDetailValues.push([product.id, orderId, amount]);
     });
-  });
-
+    console.log('Values to be inserted into order_detail:', orderDetailValues);
+    await pool.execute(insertOrderDetailSql, [orderDetailValues]);
+    console.log('Checkout successful');
+    res.json({ success: true, message: 'Checkout successful' });
+  } catch (err) {
+    console.error('Error executing SQL query:', err);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
   console.log(req.body);
 });
+
 
 
 
