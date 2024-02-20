@@ -244,14 +244,12 @@ app.post('/checkout', async (req, res) => {
       data.memberID
     ]);
     const orderId = orderResult.insertId;
-    //console.log(orderId);
     const orderDetailValues = [];
     data.product.forEach((product) => {
-      const amount = product.quantity;
-      orderDetailValues.push([product.id, orderId, amount]);
+      //orderDetailValues.push(product.id, orderId, amount);
+      pool.execute(insertOrderDetailSql, [product.id,orderId,product.quantity]);
     });
     console.log('Values to be inserted into order_detail:', orderDetailValues);
-    await pool.execute(insertOrderDetailSql, [orderDetailValues]);
     console.log('Checkout successful');
     res.json({ success: true, message: 'Checkout successful' });
   } catch (err) {
