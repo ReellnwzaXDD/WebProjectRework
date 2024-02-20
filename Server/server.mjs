@@ -232,6 +232,36 @@ try {
   }
 });
 
+/**
+ * @swagger
+ * /checkout:
+ *  post:
+ *    summary: check out form cart
+ *    requestBody:
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              DATE:
+ *                type: string
+ *              TIME:
+ *                type: string
+ *              M_ID:
+ *                type: string
+ *              PID:
+ *                type: string
+ *              OID:
+ *                type: string
+ *              Amount:
+ *                type: string
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
 app.post('/checkout', async (req, res) => {
   const data = req.body;
   const insertOrderSql = 'INSERT INTO orders (`DATE`, `TIME`, `M_ID`) VALUES (?,?,?)';
