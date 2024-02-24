@@ -289,7 +289,45 @@ app.post('/checkout', async (req, res) => {
   console.log(req.body);
 });
 
+/**
+ * @swagger
+ * /getmemberdetail:
+ *  get:
+ *    summary: qurry memberdetail
+ *    parameters:
+ *     - in: Id
+ *       name: userId
+ *       schema:
+ *          type: string
+ *       required: true
+ *       description: get memberdetail in db
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
+app.get('/getmemberdetail',async (req,res)=>{
+  const {Id} = req.query;
+  if (!Id) {
+    return res.status(400).json({ error: 'Id is empty' });
+  }
 
+  const member_detail = 'SELECT Name,Surname,Address,tel FROM member_detail WHERE Id=?';
+
+  try {
+    const [result] = await pool.execute(member_detail, [Id]);
+
+
+    return res.json(result);
+  } catch (err) {
+    console.error('Error executing SQL Query:', err);
+    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+
+
+})
 
 
 

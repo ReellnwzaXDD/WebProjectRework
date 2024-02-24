@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -6,6 +6,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate  } from 'react-router-dom';
 export default function AddressForm() {
+  const [memberDetail, setMemberDetail] = useState({
+    Name: '',
+    Surname: '',
+    Address: '',
+    tel: ''
+});
+
+  const Id = sessionStorage.getItem('id');
+  const getmemberdetail = async () => {
+    try{
+        const response = await fetch(`http://localhost:3001/getmemberdetail?Id=${Id}`)
+        const data = await response.json();
+        if (data && data.length > 0) {
+          setMemberDetail(data[0]);
+      }
+    } catch (error){
+        console.error('Error', error.message);
+    }
+  };
+  useEffect(()=>{
+    getmemberdetail();
+  },[])
   let Navi = useNavigate();
   return (
     
@@ -24,6 +46,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            value={memberDetail.Name}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -35,6 +58,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={memberDetail.Surname}
           />
         </Grid>
         <Grid item xs={12}>
@@ -42,64 +66,26 @@ export default function AddressForm() {
             required
             id="address1"
             name="address1"
-            label="Address line 1"
+            label="Address"
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            value={memberDetail.Address}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
             required
-            id="city"
-            name="city"
-            label="City"
+            id="tel"
+            name="tel"
+            label="phonenumber"
             fullWidth
-            autoComplete="shipping address-level2"
+            autoComplete="phonenumber"
             variant="standard"
+            value={memberDetail.tel}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
+        
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
