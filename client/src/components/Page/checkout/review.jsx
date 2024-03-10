@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -31,7 +31,7 @@ const products = [
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+//const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
@@ -40,7 +40,27 @@ const payments = [
 ];
 
 export default function Review() {
-
+  const [memberDetail, setMemberDetail] = useState({
+    Name: '',
+    Surname: '',
+    Address: '',
+    tel: ''
+  });
+  const Id = sessionStorage.getItem('id');
+  const getmemberdetail = async () => {
+    try{
+        const response = await fetch(`http://localhost:3001/getmemberdetail?Id=${Id}`)
+        const data = await response.json();
+        if (data && data.length > 0) {
+          setMemberDetail(data[0]);
+      }
+    } catch (error){
+        console.error('Error', error.message);
+    }
+  };
+  useEffect(()=>{
+    getmemberdetail();
+  },[])
   return (
     <div data-theme="emerald" className='container mx-auto p-4 mt-20'>
       <Typography variant="h6" gutterBottom>
@@ -65,26 +85,11 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>Name: {memberDetail.Name}  {memberDetail.Surname}</Typography>
+          <Typography gutterBottom>Address: {memberDetail.Address}</Typography>
+          <Typography gutterBottom>Tel: {memberDetail.tel}</Typography>
         </Grid>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Payment details
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
-        </Grid>
+     
       </Grid>
     </div>
   );

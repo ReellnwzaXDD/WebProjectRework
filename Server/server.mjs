@@ -15,27 +15,27 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // For Testing in dev env
-// const pool = mysql.createPool({
-//   host: 'localhost',  
-//   user: 'root',
-//   password: '',
-//   database: process.env.DB_DATABASE,
-//   port: process.env.DB_PORT,
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0,
-// });
-
 const pool = mysql.createPool({
-  host: 'db',
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  host: 'localhost',  
+  user: 'root',
+  password: '',
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
 });
+
+// const pool = mysql.createPool({
+//   host: 'db',
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE,
+//   port: process.env.DB_PORT,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+// });
 app.use((err, req, res, next) => {
   console.error('Error:', err);
   res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -318,17 +318,59 @@ app.get('/getmemberdetail',async (req,res)=>{
 
   try {
     const [result] = await pool.execute(member_detail, [Id]);
-
-
     return res.json(result);
   } catch (err) {
     console.error('Error executing SQL Query:', err);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
-
-
 })
-
+/**
+ * @swagger
+ * /getorder:
+ *  get:
+ *    summary: qurry memberdetail
+ *    parameters:
+ *     - in: Id
+ *       name: userId
+ *       schema:
+ *          type: string
+ *       required: true
+ *       description: get memberdetail in db
+ *    responses:
+ *      200:
+ *        description: Successful response
+ *      500:
+ *        description: Internal server error
+ * 
+ */
+app.get('/getorder',async (req,res)=>{
+  const {Id} = req.query;
+  if (!Id) {
+    return res.status(400).json({ error: 'Id is empty' });
+  }
+  const PIDQuery  = 'SELECT PID FROM order_detail JOIN orders ON orders.OID = order_detail.OID WHERE M_ID=?';
+  const productQuery  = 'SELECT products.product_name,products.price FROM products WHERE products.PID =?';
+  try {
+    const [PIDRows] = await pool.execute(PIDQuery, [Id]);
+    if (PIDRows.length === 0) {
+      return res.status(404).json({ error: 'No order found for the provided Id' });
+    }
+    const products = [];
+    for (const row of PIDRows) {
+      const PID = row.PID;
+      const [productRows] = await pool.execute(productQuery, [PID]);
+      if (productRows.length === 0) {
+        console.error(`No product found for PID: ${PID}`);
+      } else {
+        products.push(productRows[0]); 
+      }
+    }
+    return res.json(products);
+  } catch (err) {
+    console.error('Error executing SQL Query:', err);
+    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+})
 
 
 
