@@ -10,6 +10,7 @@ import { CartContext } from "../cartcontext";
 
 export default function Review() {
   const [products, setProducts] = useState([]);
+  const [orderSummary, setOrderSummary] = useState([]);
   const [memberDetail, setMemberDetail] = useState({
     Name: '',
     Surname: '',
@@ -39,10 +40,42 @@ export default function Review() {
         console.error('Error', error.message);
     }
   };
+  const getOrderSummary = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/getorder?Id=${Id}`);
+      const data = await response.json();
+      if (data && data.length > 0) {
+        // Group products by order date
+        const groupedOrders = {};
+        data.forEach(product => {
+          const date = new Date(product.DATE).toISOString().split('T')[0];
+          if (!groupedOrders[date]) {
+            groupedOrders[date] = [];
+          }
+          groupedOrders[date].push({
+            number: groupedOrders[date].length + 1,
+            productName: product.product_name,
+            price: parseFloat(product.price)
+          });
+        });
 
+        // Calculate total price for each group
+        const summary = Object.entries(groupedOrders).map(([date, products]) => ({
+          date,
+          products,
+          totalPrice: products.reduce((total, product) => total + product.price, 0)
+        }));
+
+        setOrderSummary(summary);
+      }
+    } catch (error) {
+      console.error('Error fetching order summary:', error.message);
+    }
+  };
   useEffect(()=>{
     getproductdetail();
     getmemberdetail();
+    getOrderSummary();
   },[])
   return (
     <div data-theme="emerald" className='container mx-auto p-4 mt-20'>
@@ -50,21 +83,31 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.product_name} sx={{ py: 1, px: 0 }}>
+        {orderSummary.map((summary, index) => (
+          <ListItem key={index} sx={{ py: 1, px: 0 }}>
             <ListItemText 
-              primary={`Product: ${product.product_name}`} 
-              secondary={`OrderDate: ${new Date(product.DATE).toISOString().split('T')[0]}`} 
+              primary={`Date: ${summary.date}`} 
+              secondary={
+                <div>
+                  <Typography variant="body1" component="div">
+                    Products:
+                    <ul>
+                      {summary.products.map((product, idx) => (
+                        <li key={product.number}>
+                        {product.number}. {product.productName} - ${product.price.toFixed(2)}
+                      </li>
+                      ))}
+                    </ul>
+                  </Typography>
+                  <Typography variant="body" component="div">
+                    Total Price: ${summary.totalPrice.toFixed(2)}
+                  </Typography>
+                </div>
+              }
             />
-            <Typography variant="body2">{product.price} ฿</Typography>
           </ListItem>
         ))}
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
-          <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            {products.reduce((total, product) => total + parseFloat(product.price), 0) } ฿
-          </Typography>
-        </ListItem>
+        
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
