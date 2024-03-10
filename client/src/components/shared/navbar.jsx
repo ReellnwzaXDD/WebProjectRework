@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect } from "react";
 import { Link } from "react-router-dom";
 import shopIcon from "/img/cart.png";
 import LoginIcon from "/img/Login.png";
@@ -18,7 +18,7 @@ import { spacing } from '@mui/system';
 const Navbar = () => {
   const { state } = useContext(CartContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -26,7 +26,7 @@ const Navbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
+ 
   return (
     <AppBar position="fixed" style={{ background: '#f2f6fc', border: '20px' }}>
       <Container maxWidth="xl" style={{ background: '#f2f6fc' }}>
@@ -145,7 +145,10 @@ const Navbar = () => {
             <li>
               <Link to="/summary">OrderSummary</Link>
             </li>
-            <li><Link to="/logout">Logout</Link></li>
+            {isLoggedIn ? (<li><Link to="/logout">Logout</Link></li>):(
+              <li><Link to="/login">Login</Link></li>
+            )}
+            
           </ul>
         </div>
   
