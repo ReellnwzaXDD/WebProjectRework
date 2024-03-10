@@ -7,39 +7,9 @@ import Grid from '@mui/material/Grid';
 import ShopCart from "../shopcart";
 import { CartContext } from "../cartcontext";
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-
-//const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
 
 export default function Review() {
+  const [products, setProducts] = useState([]);
   const [memberDetail, setMemberDetail] = useState({
     Name: '',
     Surname: '',
@@ -58,7 +28,20 @@ export default function Review() {
         console.error('Error', error.message);
     }
   };
+  const getproductdetail = async () => {
+    try{
+        const response = await fetch(`http://localhost:3001/getorder?Id=${Id}`)
+        const data = await response.json();
+        if (data && data.length > 0) {
+          setProducts(data);
+      }
+    } catch (error){
+        console.error('Error', error.message);
+    }
+  };
+
   useEffect(()=>{
+    getproductdetail();
     getmemberdetail();
   },[])
   return (
@@ -68,15 +51,18 @@ export default function Review() {
       </Typography>
       <List disablePadding>
         {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+          <ListItem key={product.product_name} sx={{ py: 1, px: 0 }}>
+            <ListItemText 
+              primary={`Product: ${product.product_name}`} 
+              secondary={`OrderDate: ${new Date(product.DATE).toISOString().split('T')[0]}`} 
+            />
+            <Typography variant="body2">{product.price} ฿</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $34.06
+            {products.reduce((total, product) => total + parseFloat(product.price), 0) } ฿
           </Typography>
         </ListItem>
       </List>

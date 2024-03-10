@@ -328,14 +328,14 @@ app.get('/getmemberdetail',async (req,res)=>{
  * @swagger
  * /getorder:
  *  get:
- *    summary: qurry memberdetail
+ *    summary: qurry product detail
  *    parameters:
  *     - in: Id
  *       name: userId
  *       schema:
  *          type: string
  *       required: true
- *       description: get memberdetail in db
+ *       description: get qurry product detail in db
  *    responses:
  *      200:
  *        description: Successful response
@@ -349,7 +349,7 @@ app.get('/getorder',async (req,res)=>{
     return res.status(400).json({ error: 'Id is empty' });
   }
   const PIDQuery  = 'SELECT PID FROM order_detail JOIN orders ON orders.OID = order_detail.OID WHERE M_ID=?';
-  const productQuery  = 'SELECT products.product_name,products.price FROM products WHERE products.PID =?';
+  const productQuery  = 'SELECT products.product_name,products.price,orders.DATE FROM products JOIN order_detail ON products.PID=order_detail.PID JOIN orders ON order_detail.OID = orders.OID WHERE products.PID =?';
   try {
     const [PIDRows] = await pool.execute(PIDQuery, [Id]);
     if (PIDRows.length === 0) {

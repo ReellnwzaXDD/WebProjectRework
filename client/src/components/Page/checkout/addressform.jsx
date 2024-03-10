@@ -19,7 +19,7 @@ export default function AddressForm() {
         const response = await fetch(`http://localhost:3001/getmemberdetail?Id=${Id}`)
         const data = await response.json();
         if (data && data.length > 0) {
-          setMemberDetail(data[0]);
+         setMemberDetail(data[0]);
       }
     } catch (error){
         console.error('Error', error.message);
